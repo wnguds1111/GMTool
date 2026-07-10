@@ -518,10 +518,31 @@
                 <a href="mail_individual.html" class="page-lnb-item">개별 우편 발송</a>
             </div>
 
-        <div class="page-title">전체 우편 발송</div>
+        
+        <div class="list-header-bar" style="margin-top: 10px; align-items: flex-start; flex-direction: column;">
+            <div style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px;">전체 우편</div>
+            <div style="font-size: 15px; color: #64748B; margin-bottom: 16px;">AccountDB 중앙 등록 후 게임 샤드에 적용</div>
+            <button class="btn btn-primary" onclick="location.href='mail_all_form.html'">전체 우편 작성</button>
+        </div>
 
-        <div style="padding: 40px; text-align: center; color: #94A3B8; font-size: 16px; border: 2px dashed #E2E8F0; border-radius: 8px; margin-top: 20px;">콘텐츠 영역 (준비 중)</div>
+        <table class="data-table" style="margin-top: 24px;">
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>종류</th>
+                    <th>만료</th>
+                    <th>적용(샤드)</th>
+                    <th>작성자</th>
+                    <th>관리</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="6" style="padding: 60px 0; color: #94A3B8;">등록된 전체 우편이 없습니다.</td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
-
 </body>
 </html>
