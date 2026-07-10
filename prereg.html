@@ -7,7 +7,6 @@
     <!-- Pretendard Font for perfect modern Korean typography -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         :root {
             --primary-blue: #5282FF;
@@ -22,14 +21,12 @@
             --logout-bg: #A6B2CB;
             --active-bg: #E8F0FE;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
         }
-
         body {
             display: flex;
             height: 100vh;
@@ -38,7 +35,6 @@
             overflow: hidden;
             font-size: 15px;
         }
-
         /* --- Left Navigation Area --- */
         .left-panel {
             width: 320px;
@@ -46,7 +42,6 @@
             flex-direction: column;
             background-color: var(--sidebar-bg);
         }
-
         .logo-header {
             height: 64px;
             display: flex;
@@ -54,13 +49,11 @@
             padding: 0 20px;
             background-color: var(--sidebar-bg);
         }
-
         .logo-header .logo-img {
             height: 24px;
             object-fit: contain;
             margin-right: 6px;
         }
-
         .logo-header .logo-text {
             font-weight: 700;
             font-size: 17px;
@@ -69,13 +62,11 @@
             align-items: center;
             letter-spacing: -0.3px;
         }
-
         .logo-header .divider {
             color: #D1D5DB;
             margin: 0 12px;
             font-weight: 300;
         }
-        
         .logo-header .lang-selector {
             font-size: 15px;
             font-weight: 600;
@@ -84,18 +75,15 @@
             align-items: center;
             gap: 4px;
         }
-
         .lang-selector i {
             color: #9CA3AF;
             font-size: 16px;
         }
-
         .sidebars-container {
             display: flex;
             flex: 1;
             overflow: hidden;
         }
-
         /* Primary Blue Sidebar */
         .primary-sidebar {
             width: 80px;
@@ -107,7 +95,6 @@
             gap: 16px;
             border-top-right-radius: 20px;
         }
-
         .primary-nav-item {
             display: flex;
             flex-direction: column;
@@ -123,22 +110,18 @@
             border-radius: 12px;
             text-decoration: none;
         }
-
         .primary-nav-item i {
             font-size: 22px;
             margin-bottom: 6px;
         }
-
         .primary-nav-item.active {
             background-color: var(--white);
             color: var(--primary-blue);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
-        
         .primary-nav-item:hover:not(.active) {
             background-color: rgba(255,255,255,0.1);
         }
-
         /* Secondary Gray Sidebar */
         .secondary-sidebar {
             flex: 1;
@@ -146,7 +129,6 @@
             padding: 24px 0;
             overflow-y: auto;
         }
-
         .user-profile {
             display: flex;
             justify-content: space-between;
@@ -157,7 +139,6 @@
             margin-bottom: 24px;
             padding: 0 20px;
         }
-
         .btn-logout {
             background-color: var(--logout-bg);
             color: var(--white);
@@ -169,12 +150,10 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-
         .sub-nav-group {
             margin-bottom: 8px;
             padding: 0 12px;
         }
-
         .sub-nav-header {
             padding: 12px 16px;
             font-size: 15px;
@@ -188,23 +167,19 @@
             border-radius: 8px;
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
-
         .sub-nav-header.collapsed {
             background-color: transparent;
             color: var(--text-dark);
             box-shadow: none;
         }
-
         .sub-nav-header i {
             font-size: 14px;
             color: inherit;
         }
-
         .sub-nav-list {
             list-style: none;
             padding: 8px 0;
         }
-
         .sub-nav-item {
             padding: 10px 16px 10px 32px;
             font-size: 15px;
@@ -214,21 +189,17 @@
             display: flex;
             align-items: center;
         }
-
         .sub-nav-item i {
             margin-right: 8px;
             font-size: 14px;
         }
-
         .sub-nav-item:hover {
             color: var(--admin-tools-blue);
         }
-
         .sub-nav-item.active {
             color: var(--admin-tools-blue);
             font-weight: 700;
         }
-
         /* --- Main Content Area --- */
         .main-content {
             flex: 1;
@@ -238,7 +209,6 @@
             border-top-left-radius: 20px;
             box-shadow: -4px 0 15px rgba(0,0,0,0.03);
         }
-
         .breadcrumb {
             font-size: 18px;
             font-weight: 700;
@@ -248,34 +218,28 @@
             align-items: center;
             gap: 12px;
         }
-        
         .breadcrumb i {
             color: #CBD5E1;
             font-size: 14px;
         }
-
         .page-title {
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 24px;
         }
-
         /* Search Form Table */
         .search-table-wrapper {
             border-top: 1px solid var(--border-color);
             margin-bottom: 30px;
         }
-
         .search-table {
             width: 100%;
             border-collapse: collapse;
         }
-
         .search-table td {
             border-bottom: 1px solid var(--border-color);
             padding: 12px 16px;
         }
-
         .label-cell {
             background-color: var(--label-bg);
             width: 140px;
@@ -284,17 +248,14 @@
             color: var(--text-dark);
             text-align: center;
         }
-
         .input-cell {
             background-color: var(--white);
         }
-
         .form-group {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
         .form-control {
             padding: 8px 12px;
             border: 1px solid var(--border-color);
@@ -304,24 +265,19 @@
             transition: border-color 0.2s;
             color: var(--text-dark);
         }
-
         .form-control:focus {
             border-color: var(--admin-tools-blue);
         }
-
         select.form-control {
             min-width: 120px;
             background-color: var(--white);
         }
-        
         input.form-control {
             min-width: 200px;
         }
-        
         input.form-control::placeholder {
             color: #94A3B8;
         }
-
         .btn {
             padding: 8px 20px;
             font-size: 15px;
@@ -330,16 +286,13 @@
             cursor: pointer;
             border: none;
         }
-
         .btn-primary {
             background-color: var(--admin-tools-blue);
             color: var(--white);
         }
-
         .btn-primary:hover {
             background-color: #2563EB;
         }
-
         /* Data Table Area */
         .data-header {
             display: flex;
@@ -349,7 +302,6 @@
             font-size: 15px;
             color: var(--text-gray);
         }
-        
         .btn-outline {
             border: 1px solid var(--border-color);
             background: var(--white);
@@ -359,13 +311,11 @@
             font-size: 14px;
             cursor: pointer;
         }
-
         .data-table {
             width: 100%;
             border-collapse: collapse;
             text-align: center;
         }
-
         .data-table th {
             background-color: var(--label-bg);
             padding: 12px 8px;
@@ -374,18 +324,15 @@
             color: var(--text-dark);
             border-bottom: 1px solid var(--border-color);
         }
-
         .data-table td {
             padding: 30px 8px;
             font-size: 15px;
             color: var(--text-gray);
             border-bottom: 1px solid var(--border-color);
         }
-
     </style>
 </head>
 <body>
-
     <!-- Left Panel -->
     <div class="left-panel">
         <div class="logo-header">
@@ -397,7 +344,6 @@
                 KO <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-left: 2px;"></i>
             </div>
         </div>
-        
         <div class="sidebars-container">
             <!-- Primary Blue Sidebar -->
             <div class="primary-sidebar">
@@ -422,68 +368,141 @@
                     SET
                 </a>
             </div>
-
             <!-- Secondary Gray Sidebar -->
             <div class="secondary-sidebar">
                 <div class="user-profile">
                     이주형
                     <button class="btn-logout">로그아웃</button>
                 </div>
-
                 <div class="sub-nav-group">
                     <div class="sub-nav-header collapsed">
                         공통 관리
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-
                 <div class="sub-nav-group">
                     <div class="sub-nav-header collapsed">
                         GNJOY 관리
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-
                 <div class="sub-nav-group">
                     <div class="sub-nav-header collapsed">
                         라그나로크 제로
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-
                 <div class="sub-nav-group">
                     <div class="sub-nav-header collapsed">
                         RO FACTORY 관리
                         <i class="fa-solid fa-chevron-down"></i>
                     </div>
                 </div>
-
                 <div class="sub-nav-group">
                     <div class="sub-nav-header">
                         GetPoring
                         <i class="fa-solid fa-chevron-up"></i>
                     </div>
                     <ul class="sub-nav-list">
-                        <li class="sub-nav-item" onclick="location.href='prereg.html'">사전예약 관리</li>
+                        <li class="sub-nav-item active" onclick="location.href='prereg.html'">사전예약 관리</li>
                         <li class="sub-nav-item" onclick="location.href='notice.html'">공지 관리</li>
-                        <li class="sub-nav-item active" onclick="location.href='maintenance.html'">점검 관리</li>
+                        <li class="sub-nav-item" onclick="location.href='maintenance.html'">점검 관리</li>
                         <li class="sub-nav-item" onclick="location.href='mail_all.html'">우편 관리</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
         <div class="breadcrumb">
-            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 점검 관리
+            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 사전예약 관리
         </div>
-
-        <div class="page-title">점검 관리</div>
-
-        <div style="padding: 40px; text-align: center; color: #94A3B8; font-size: 16px; border: 2px dashed #E2E8F0; border-radius: 8px; margin-top: 20px;">콘텐츠 영역 (준비 중)</div>
+        <div class="page-title">사전예약 관리</div>
+        <div class="search-table-wrapper">
+            <table class="search-table">
+                <tbody>
+                    <tr>
+                        <td class="label-cell">검색조건</td>
+                        <td class="input-cell" colspan="3">
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option>어카운트넘버</option>
+                                </select>
+                                <input type="text" class="form-control" placeholder="숫자만 입력하세요">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">PG이름</td>
+                        <td class="input-cell">
+                            <select class="form-control">
+                                <option>전체</option>
+                            </select>
+                        </td>
+                        <td class="label-cell">화폐</td>
+                        <td class="input-cell">
+                            <select class="form-control">
+                                <option>전체</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">KAFRA POINT</td>
+                        <td class="input-cell">
+                            <select class="form-control">
+                                <option>전체</option>
+                            </select>
+                        </td>
+                        <td class="label-cell">결제수단</td>
+                        <td class="input-cell">
+                            <select class="form-control">
+                                <option>전체</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">검색일시</td>
+                        <td class="input-cell" colspan="3">
+                            <div class="form-group">
+                                <input type="date" class="form-control" value="2026-07-10">
+                                <span>~</span>
+                                <input type="date" class="form-control" value="2026-07-10">
+                                <button class="btn btn-primary">조회</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="data-header">
+            (전체 : 0) <button class="btn-outline"><i class="fa-solid fa-arrow-down" style="font-size: 12px; margin-right:4px;"></i>Download</button>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>거래번호</th>
+                    <th>어카운트넘버</th>
+                    <th>아이디</th>
+                    <th>KAFRA POINT</th>
+                    <th>화폐</th>
+                    <th>금액</th>
+                    <th>PG</th>
+                    <th>주문번호</th>
+                    <th>PG주문번호</th>
+                    <th>결제일시</th>
+                    <th>취소일시</th>
+                    <th>환불일시</th>
+                    <th>결제수단</th>
+                    <th>PG상세정보</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="14">데이터가 존재하지 않습니다</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
 </body>
 </html>
