@@ -148,26 +148,55 @@
             color: #475569;
         }
     
-        .reward-row { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
-        .reward-input-wrap { position: relative; width: 300px; display: flex; align-items: center; }
-        .reward-input-wrap input { width: 100%; padding-right: 50px; }
-        .badge { position: absolute; right: 8px; font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
-        .badge.free { background-color: #DCFCE7; color: #16A34A; }
-        .badge.paid { background-color: #FEF3C7; color: #D97706; }
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 30px; margin-bottom: 20px; }
+        .page-link { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; color: var(--text-dark); text-decoration: none; font-size: 16px; font-weight: 500; transition: all 0.2s; }
+        .page-link.active { background-color: var(--admin-tools-blue); color: var(--white); font-weight: 700; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
+        .page-link:hover:not(.active) { background-color: #E2E8F0; }
+        .page-link i { font-size: 14px; }
+    </style>
 
+    <style>
+        .lang-card {
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background-color: #FFFFFF;
+        }
+        
+        .lang-card-header {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 12px;
+        }
+        
+        .lang-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .lang-dot.red { background-color: #EF4444; }
+        .lang-dot.gray { background-color: #CBD5E1; }
+        
+        .lang-req { color: #EF4444; margin-left: 4px; }
+        
+        .help-text {
+            font-size: 15px;
+            color: #64748B;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
     
-        .dropdown-menu {
-            position: absolute; top: 100%; left: 0; right: 0; background: var(--white);
-            border: 1px solid var(--border-color); border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            z-index: 10; max-height: 200px; overflow-y: auto; display: none; margin-top: 4px;
-        }
-        .dropdown-menu.show { display: block; }
-        .dropdown-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 8px 12px; cursor: pointer; transition: background 0.2s;
-        }
-        .dropdown-item:hover { background-color: var(--active-bg); }
-        .dropdown-item-text { font-size: 14px; color: var(--text-dark); }
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 30px; margin-bottom: 20px; }
+        .page-link { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; color: var(--text-dark); text-decoration: none; font-size: 16px; font-weight: 500; transition: all 0.2s; }
+        .page-link.active { background-color: var(--admin-tools-blue); color: var(--white); font-weight: 700; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
+        .page-link:hover:not(.active) { background-color: #E2E8F0; }
+        .page-link i { font-size: 14px; }
     </style>
 </head>
 <body>
@@ -214,196 +243,83 @@
         </div>
     </div>
     <!-- Main Content -->
-    
     <div class="main-content">
+
         <div class="breadcrumb">
-            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 우편 관리 <i class="fa-solid fa-chevron-right"></i> 전체 우편 작성
+            포털 관리 <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 공지 관리 <i class="fa-solid fa-chevron-right"></i> 템플릿 관리
         </div>
 
         <div class="page-lnb">
-                <a href="mail_all.html" class="page-lnb-item active">전체 우편 발송</a>
-                <a href="mail_individual.html" class="page-lnb-item">개별 우편 발송</a>
-                <a href="mail_template.html" class="page-lnb-item">템플릿 관리</a>
-            </div>
-
-        <div class="form-header-bar" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
-            <div>
-                <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">전체 우편 작성</div>
-                <div style="font-size: 15px; color: #64748B;">중앙 등록 후 목록에서 '샤드 적용'을 실행하세요.</div>
-            </div>
-            <i class="fa-solid fa-xmark" style="font-size: 24px; color: #94A3B8; cursor: pointer;" onclick="location.href='mail_all.html'"></i>
+            <a href="mail_all.html" class="page-lnb-item">전체 우편 발송</a>
+            <a href="mail_individual.html" class="page-lnb-item">개별 우편 발송</a>
+            <a href="mail_template.html" class="page-lnb-item active">템플릿 관리</a>
         </div>
 
-        <table class="form-table">
-            <tr>
-                <td class="label-cell">발송 방식</td>
-                <td class="input-cell">
-                    <div style="display: flex; gap: 8px;">
-                        <button class="btn btn-primary" id="btn-free" onclick="toggleMode('free')">자유 텍스트</button>
-                        <button class="btn btn-outline" id="btn-template" onclick="toggleMode('template')">등록 템플릿</button>
-                    </div>
-                </td>
-            </tr>
-            <tr id="row-template" style="display: none;">
-                <td class="label-cell">등록 우편 (Mailbox)</td>
-                <td class="input-cell">
-                    <select class="form-control" style="width: 300px;">
-                        <option>1000</option>
-                        <option>[1] Mailbox_01</option>
-                        <option>[100] Mailbox_02</option>
-                    </select>
-                    <div style="font-size: 13px; color: #64748B; margin-top: 8px;">제목키 Mail_Reward_Basic_Title · 본문키 Mail_Reward_Basic_Desc · 유저 언어로 자동 현지화</div>
-                </td>
-            </tr>
-            <tr id="row-title">
-                <td class="label-cell">제목</td>
-                <td class="input-cell">
-                    <input type="text" class="form-control" placeholder="제목을 입력하세요">
-                </td>
-            </tr>
-            <tr id="row-body">
-                <td class="label-cell">본문</td>
-                <td class="input-cell">
-                    <textarea class="form-control" placeholder="본문 내용을 입력하세요"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td class="label-cell">만료일<br><span style="font-size: 13px; color: #94A3B8; font-weight: 400;">(UTC, 비우면 샤드 기본)</span></td>
-                <td class="input-cell">
-                    <input type="datetime-local" class="form-control" style="width: 250px;">
-                </td>
-            </tr>
-            <tr>
-                <td class="label-cell">보상</td>
-                <td class="input-cell">
-                    <div class="reward-row">
-                        <div class="reward-input-wrap">
-                            <input type="text" class="form-control" value="2 Free_Zeny" readonly>
-                            <span class="badge free">무료</span>
-                        </div>
-                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="1,000">
-                        <button class="btn btn-outline">삭제</button>
-                    </div>
-                    <div class="reward-row">
-                        <div class="reward-input-wrap">
-                            <input type="text" class="form-control" value="3 Paid_Dia" readonly>
-                            <span class="badge paid">유료</span>
-                        </div>
-                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="500">
-                        <button class="btn btn-outline">삭제</button>
-                    </div>
-                    <div class="reward-row">
-                        <div class="reward-input-wrap">
-                            <input type="text" class="form-control" placeholder="아이템 검색 / ID" onclick="toggleDropdown(this)" onfocus="toggleDropdown(this)" readonly style="cursor: pointer; background-color: var(--white);">
-                            <div class="dropdown-menu">
-                                <div class="dropdown-item" onclick="selectItem(this, '1 Paid_Zeny', 'paid')">
-                                    <span class="dropdown-item-text">1 Paid_Zeny</span>
-                                    <span class="badge paid">유료</span>
-                                </div>
-                                <div class="dropdown-item" onclick="selectItem(this, '2 Free_Zeny', 'free')">
-                                    <span class="dropdown-item-text">2 Free_Zeny</span>
-                                    <span class="badge free">무료</span>
-                                </div>
-                                <div class="dropdown-item" onclick="selectItem(this, '3 Paid_Dia', 'paid')">
-                                    <span class="dropdown-item-text">3 Paid_Dia</span>
-                                    <span class="badge paid">유료</span>
-                                </div>
-                                <div class="dropdown-item" onclick="selectItem(this, '4 Free_Dia', 'free')">
-                                    <span class="dropdown-item-text">4 Free_Dia</span>
-                                    <span class="badge free">무료</span>
-                                </div>
-                                <div class="dropdown-item" onclick="selectItem(this, '5 Valhalla Pass', 'free')">
-                                    <span class="dropdown-item-text">5 Valhalla Pass</span>
-                                    <span class="badge free">무료</span>
-                                </div>
-                                <div class="dropdown-item" onclick="selectItem(this, '6 Nickname Change Ticket', 'free')">
-                                    <span class="dropdown-item-text">6 Nickname Change Ticket</span>
-                                    <span class="badge free">무료</span>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="number" class="form-control" style="width: 100px;" placeholder="수량">
-                        <button class="btn btn-outline">삭제</button>
-                    </div>
-                    <button class="btn btn-outline" style="margin-top: 4px;">보상 추가</button>
-                </td>
-            </tr>
+        <div class="list-header-bar">
+            <div class="list-search">
+                <span style="color: #94A3B8; margin-right: 10px;">(전체 : 3)</span>
+                <select>
+                    <option>템플릿 이름</option>
+                </select>
+                <input type="text" placeholder="검색어를 입력하세요">
+                <button class="btn btn-primary">조회</button>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <button class="btn btn-primary" onclick="location.href='mail_template_form.html'">새 템플릿</button>
+            </div>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>템플릿 이름</th>
+                    <th>유형</th>
+                    <th>수정일</th>
+                    <th>관리</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>3</td>
+                    <td style="font-weight: 600;">test</td>
+                    <td>일반</td>
+                    <td>2026. 7. 10. 오전 10:50:45</td>
+                    <td>
+                        <button class="btn btn-outline" style="padding: 4px 12px;" onclick="location.href='mail_template_form.html'">수정</button>
+                        <button class="btn btn-outline" style="padding: 4px 12px;">삭제</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td style="font-weight: 600;">정기 점검 템플릿</td>
+                    <td>점검</td>
+                    <td>2026. 7. 9. 오후 02:15:22</td>
+                    <td>
+                        <button class="btn btn-outline" style="padding: 4px 12px;" onclick="location.href='mail_template_form.html'">수정</button>
+                        <button class="btn btn-outline" style="padding: 4px 12px;">삭제</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td style="font-weight: 600;">여름 이벤트 당첨자</td>
+                    <td>이벤트</td>
+                    <td>2026. 7. 8. 오전 11:30:00</td>
+                    <td>
+                        <button class="btn btn-outline" style="padding: 4px 12px;" onclick="location.href='mail_template_form.html'">수정</button>
+                        <button class="btn btn-outline" style="padding: 4px 12px;">삭제</button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
 
-        <div class="form-actions" style="justify-content: space-between; margin-top: 24px;">
-            <button class="btn btn-outline" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">취소</button>
-            <button class="btn btn-primary" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">등록</button>
+        <div class="pagination">
+            <a href="#" class="page-link"><i class="fa-solid fa-angles-left"></i></a>
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link"><i class="fa-solid fa-angles-right"></i></a>
         </div>
+
     </div>
-    
-    <script>
-        function toggleMode(mode) {
-            const btnFree = document.getElementById('btn-free');
-            const btnTemplate = document.getElementById('btn-template');
-            const rowTemplate = document.getElementById('row-template');
-            const rowTitle = document.getElementById('row-title');
-            const rowBody = document.getElementById('row-body');
-            
-            if (mode === 'free') {
-                btnFree.className = 'btn btn-primary';
-                btnTemplate.className = 'btn btn-outline';
-                rowTemplate.style.display = 'none';
-                rowTitle.style.display = 'table-row';
-                rowBody.style.display = 'table-row';
-            } else {
-                btnFree.className = 'btn btn-outline';
-                btnTemplate.className = 'btn btn-primary';
-                rowTemplate.style.display = 'table-row';
-                rowTitle.style.display = 'none';
-                rowBody.style.display = 'none';
-            }
-        }
-    
-        function toggleDropdown(input) {
-            // Close all others first
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                if (menu !== input.nextElementSibling) {
-                    menu.classList.remove('show');
-                }
-            });
-            const menu = input.nextElementSibling;
-            if(menu && menu.classList.contains('dropdown-menu')) {
-                menu.classList.toggle('show');
-            }
-        }
-
-        function selectItem(element, text, type) {
-            const wrap = element.closest('.reward-input-wrap');
-            const input = wrap.querySelector('input');
-            const menu = wrap.querySelector('.dropdown-menu');
-            
-            // Set value
-            input.value = text;
-            
-            // Remove existing badge if any
-            const existingBadge = wrap.querySelector('.badge');
-            if (existingBadge) {
-                existingBadge.remove();
-            }
-            
-            // Add new badge
-            const badge = document.createElement('span');
-            badge.className = `badge ${type}`;
-            badge.textContent = type === 'paid' ? '유료' : '무료';
-            wrap.appendChild(badge);
-            
-            // Hide menu
-            menu.classList.remove('show');
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.reward-input-wrap')) {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('show');
-                });
-            }
-        });
-    </script>
 </body>
 </html>
