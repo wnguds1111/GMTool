@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+html_content = """<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -93,3 +95,9 @@
     </div>
 </body>
 </html>
+"""
+
+with open('index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("Updated index.html to keep only 3 items, added accordion for QnA, and changed Title.")
