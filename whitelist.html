@@ -330,6 +330,55 @@
             color: var(--text-gray);
             border-bottom: 1px solid var(--border-color);
         }
+    
+        .breadcrumb {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .breadcrumb i {
+            color: #CBD5E1;
+            font-size: 14px;
+        }
+
+        .page-lnb {
+            display: flex;
+            gap: 24px;
+            border-bottom: 1px solid #CBD5E1;
+            margin-bottom: 24px;
+            padding-bottom: 0;
+            margin-top: 16px;
+        }
+        .page-lnb-item {
+            font-size: 16px;
+            font-weight: 700;
+            color: #94A3B8;
+            padding-bottom: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+        }
+        .page-lnb-item.active {
+            color: var(--admin-tools-blue);
+        }
+        .page-lnb-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--admin-tools-blue);
+        }
+        .page-lnb-item:hover:not(.active) {
+            color: #475569;
+        }
+
     </style>
 </head>
 <body>
@@ -415,17 +464,13 @@
     </div>
     <!-- Main Content -->
     <div class="main-content">
-        <div class="breadcrumb" style="margin-bottom: 24px; font-size: 14px; color: #64748B;">
-            <i class="fa-solid fa-house" style="color: var(--admin-tools-blue); margin-right: 8px;"></i> 대시보드 <i class="fa-solid fa-chevron-right" style="margin: 0 8px; font-size: 10px;"></i> 점검 관리 <i class="fa-solid fa-chevron-right" style="margin: 0 8px; font-size: 10px;"></i> 화이트리스트
+        <div class="breadcrumb">
+            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 점검 관리
         </div>
 
-        <div class="page-title" style="font-size: 24px; font-weight: 700; color: var(--text-dark); margin-bottom: 24px;">
-            점검 관리
-        </div>
-
-        <div class="page-lnb" style="display: flex; border-bottom: 1px solid var(--border-color); margin-bottom: 24px;">
-            <a href="maintenance.html" class="page-lnb-item" style="padding: 12px 24px; font-weight: 500; color: var(--text-gray); text-decoration: none;">점검 관리</a>
-            <a href="whitelist.html" class="page-lnb-item active" style="padding: 12px 24px; font-weight: 600; color: var(--primary-blue); border-bottom: 2px solid var(--primary-blue); text-decoration: none;">화이트리스트</a>
+        <div class="page-lnb">
+            <a href="maintenance.html" class="page-lnb-item ">점검 관리</a>
+            <a href="whitelist.html" class="page-lnb-item active">화이트리스트</a>
         </div>
 
         <div class="form-card" style="background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 32px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
