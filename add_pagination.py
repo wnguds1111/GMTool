@@ -42,10 +42,6 @@ mail_files = {
     'mail_individual.html': ('개별 우편', 'AccountDB 사용자 계정 단위로 개별 발송', '개별 우편 작성', '')
 }
 
-for file, (title, desc, btn_text, btn_action) action_onclick in zip(mail_files.keys(), mail_files.values()):
-    # Unpack the tuple properly
-    pass
-
 for file, details in mail_files.items():
     title, desc, btn_text, btn_action = details
     with open(file, 'r', encoding='utf-8') as f:

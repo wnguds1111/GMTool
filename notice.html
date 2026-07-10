@@ -147,6 +147,12 @@
         .page-lnb-item:hover:not(.active) {
             color: #475569;
         }
+    
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 30px; margin-bottom: 20px; }
+        .page-link { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; color: var(--text-dark); text-decoration: none; font-size: 16px; font-weight: 500; transition: all 0.2s; }
+        .page-link.active { background-color: var(--admin-tools-blue); color: var(--white); font-weight: 700; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
+        .page-link:hover:not(.active) { background-color: #E2E8F0; }
+        .page-link i { font-size: 14px; }
     </style>
 </head>
 <body>
@@ -383,6 +389,14 @@
                     </tr>
                 </tbody>
             </table>
+
+        <div class="pagination">
+            <a href="#" class="page-link"><i class="fa-solid fa-angles-left"></i></a>
+            <a href="#" class="page-link active">1</a>
+            <a href="#" class="page-link">2</a>
+            <a href="#" class="page-link"><i class="fa-solid fa-angles-right"></i></a>
+        </div>
+
         </div>
     </div>
 </body>
