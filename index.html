@@ -334,87 +334,8 @@
 </head>
 <body>
     <!-- Left Panel -->
-    <div class="left-panel">
-        <div class="logo-header">
-            <img src="gravity_logo.png" alt="GRAVITY" class="logo-img" onerror="this.src='https://stage-admin.mygnjoy.com/_next/image?url=%2Fimages%2Fgravity.png&w=384&q=75'">
-            <div class="logo-text" style="cursor:pointer;" onclick="location.href='index.html'">Admin Tools</div>
-            <div class="divider">|</div>
-            <div class="lang-selector">
-                <i class="fa-solid fa-earth-americas"></i>
-                KO <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-left: 2px;"></i>
-            </div>
-        </div>
-        <div class="sidebars-container">
-            <!-- Primary Blue Sidebar -->
-            <div class="primary-sidebar">
-                <a href="#" class="primary-nav-item">
-                    <i class="fa-solid fa-user"></i>
-                    MEM
-                </a>
-                <a href="#" class="primary-nav-item">
-                    <i class="fa-solid fa-gamepad"></i>
-                    GAME
-                </a>
-                <a href="#" class="primary-nav-item">
-                    <i class="fa-solid fa-sack-dollar"></i>
-                    PAY
-                </a>
-                <a href="#" class="primary-nav-item active">
-                    <i class="fa-solid fa-globe"></i>
-                    WEB
-                </a>
-                <a href="#" class="primary-nav-item">
-                    <i class="fa-solid fa-gear"></i>
-                    SET
-                </a>
-            </div>
-            <!-- Secondary Gray Sidebar -->
-            <div class="secondary-sidebar">
-                <div class="user-profile">
-                    이주형
-                    <button class="btn-logout">로그아웃</button>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header collapsed">
-                        공통 관리
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header collapsed">
-                        GNJOY 관리
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header collapsed">
-                        라그나로크 제로
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header collapsed">
-                        RO FACTORY 관리
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header">
-                        GetPoring
-                        <i class="fa-solid fa-chevron-up"></i>
-                    </div>
-                    <ul class="sub-nav-list">
-                        <li class="sub-nav-item" onclick="location.href='prereg.html'">사전예약 관리</li>
-                        <li class="sub-nav-item" onclick="location.href='notice.html'">공지 관리</li>
-                        <li class="sub-nav-item" onclick="location.href='maintenance.html'">점검 관리</li>
-                        <li class="sub-nav-item" onclick="location.href='mail_all.html'">우편 관리</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Main Content -->
-    <div class="main-content" style="background-color: #F8FAFC;">
+    <div class="main-content" style="background-color: #F8FAFC; border-radius: 0; box-shadow: none;">
         <div class="breadcrumb" style="margin-bottom: 32px;">
             <i class="fa-solid fa-house" style="color: var(--admin-tools-blue); margin-right: 8px;"></i> 대시보드
         </div>
@@ -482,36 +403,21 @@
             <!-- 질의 사항 -->
             <div class="dash-card" style="grid-column: 1 / -1; background: var(--white); border: 1px solid var(--border-color); border-radius: 12px; padding: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
                 <div class="dash-title" style="font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
-                    <i class="fa-solid fa-circle-question" style="color: var(--admin-tools-blue);"></i> 주요 질의 사항 (Q&A / 기획 확인 필요)
+                    <i class="fa-solid fa-circle-question" style="color: var(--admin-tools-blue);"></i> 주요 질의 사항 (API 수급 필요 리스트)
                 </div>
                 
                 <div style="display: flex; flex-direction: column; gap: 16px;">
                     <div style="background: #F8FAFC; border-radius: 8px; padding: 16px; border-left: 4px solid var(--admin-tools-blue);">
-                        <div style="font-weight: 700; color: var(--text-dark); margin-bottom: 8px; font-size: 15px;"><i class="fa-solid fa-q" style="color: var(--admin-tools-blue); margin-right: 6px;"></i> 사전예약 보상 지급 로직</div>
-                        <div style="color: var(--text-gray); font-size: 14px; line-height: 1.5; padding-left: 24px;">사전예약 보상 발송 시, 어드민의 우편 시스템 API를 통해 글로벌하게 자동 일괄 발송되는 구조인지, 아니면 별도의 쿠폰 코드로 발급되는 방식인지 명확한 확인이 필요합니다.</div>
+                        <div style="font-weight: 700; color: var(--text-dark); font-size: 15px;">1. 우편 관리 > 등록 템플릿 > 조회 API 수급 필요</div>
                     </div>
                     
                     <div style="background: #F8FAFC; border-radius: 8px; padding: 16px; border-left: 4px solid var(--admin-tools-blue);">
-                        <div style="font-weight: 700; color: var(--text-dark); margin-bottom: 8px; font-size: 15px;"><i class="fa-solid fa-q" style="color: var(--admin-tools-blue); margin-right: 6px;"></i> 다국어(현지화) 데이터 관리 범위</div>
-                        <div style="color: var(--text-gray); font-size: 14px; line-height: 1.5; padding-left: 24px;">공지와 우편 템플릿의 텍스트가 인게임에서 Key 값으로 매핑되어 자동 현지화된다고 하셨는데, 어드민 툴 내부에서도 각 언어별 실제 번역된 텍스트 값을 조회하거나 미리보기(Preview) 할 수 있는 부가 기능이 필요한가요?</div>
-                    </div>
-                    
-                    <div style="background: #F8FAFC; border-radius: 8px; padding: 16px; border-left: 4px solid var(--admin-tools-blue);">
-                        <div style="font-weight: 700; color: var(--text-dark); margin-bottom: 8px; font-size: 15px;"><i class="fa-solid fa-q" style="color: var(--admin-tools-blue); margin-right: 6px;"></i> 어드민 권한 관리 (Role & Permission)</div>
-                        <div style="color: var(--text-gray); font-size: 14px; line-height: 1.5; padding-left: 24px;">현재 어드민 툴의 메뉴별 접근 및 액션 권한(읽기/쓰기/발송 승인 등)을 계정 등급(예: 일반 GM, 팀장급)별로 세분화하여 제어해야 하는지 기획적인 확정이 필요합니다.</div>
-                    </div>
-
-                    <div style="background: #F8FAFC; border-radius: 8px; padding: 16px; border-left: 4px solid var(--admin-tools-blue);">
-                        <div style="font-weight: 700; color: var(--text-dark); margin-bottom: 8px; font-size: 15px;"><i class="fa-solid fa-q" style="color: var(--admin-tools-blue); margin-right: 6px;"></i> 샤드(Shard) 일괄 적용 예외 처리</div>
-                        <div style="color: var(--text-gray); font-size: 14px; line-height: 1.5; padding-left: 24px;">공지나 우편을 여러 샤드에 동시 적용할 때, 일부 샤드에서 API 타임아웃이나 네트워크 에러가 발생할 경우, 자동 부분 롤백(Rollback)을 지원해야 하는지 혹은 개별 샤드별 재시도(Retry) 버튼을 UI로 제공해야 하는지 확인 부탁드립니다.</div>
-                    </div>
-                    
-                    <div style="background: #F8FAFC; border-radius: 8px; padding: 16px; border-left: 4px solid var(--admin-tools-blue);">
-                        <div style="font-weight: 700; color: var(--text-dark); margin-bottom: 8px; font-size: 15px;"><i class="fa-solid fa-q" style="color: var(--admin-tools-blue); margin-right: 6px;"></i> 어드민 활동 로그 (Audit Log) 관리</div>
-                        <div style="color: var(--text-gray); font-size: 14px; line-height: 1.5; padding-left: 24px;">보안상 GM의 모든 주요 작업(전체 우편 발송, 보상 지급, 공지 등록 등)에 대한 활동 이력을 추적하고 조회할 수 있는 별도의 '운영 로그' 페이지가 포함되어야 하는지 검토 바랍니다.</div>
+                        <div style="font-weight: 700; color: var(--text-dark); font-size: 15px;">2. 단건 우편 발송의 건 이력 조회 API 수급 필요</div>
                     </div>
                 </div>
             </div>
+
+</div>
 
         </div>
     </div>
