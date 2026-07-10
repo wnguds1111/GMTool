@@ -147,6 +147,14 @@
         .page-lnb-item:hover:not(.active) {
             color: #475569;
         }
+    
+        .reward-row { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+        .reward-input-wrap { position: relative; width: 300px; display: flex; align-items: center; }
+        .reward-input-wrap input { width: 100%; padding-right: 50px; }
+        .badge { position: absolute; right: 8px; font-size: 11px; padding: 2px 6px; border-radius: 4px; font-weight: 700; }
+        .badge.free { background-color: #DCFCE7; color: #16A34A; }
+        .badge.paid { background-color: #FEF3C7; color: #D97706; }
+
     </style>
 </head>
 <body>
@@ -253,17 +261,35 @@
             <tr>
                 <td class="label-cell">보상</td>
                 <td class="input-cell">
-                    <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
-                        <input type="text" class="form-control" style="width: 300px;" placeholder="아이템 검색 / ID">
+                    <div class="reward-row">
+                        <div class="reward-input-wrap">
+                            <input type="text" class="form-control" value="2 Free_Zeny" readonly>
+                            <span class="badge free">무료</span>
+                        </div>
+                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="1,000">
+                        <button class="btn btn-outline">삭제</button>
+                    </div>
+                    <div class="reward-row">
+                        <div class="reward-input-wrap">
+                            <input type="text" class="form-control" value="3 Paid_Dia" readonly>
+                            <span class="badge paid">유료</span>
+                        </div>
+                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="500">
+                        <button class="btn btn-outline">삭제</button>
+                    </div>
+                    <div class="reward-row">
+                        <div class="reward-input-wrap">
+                            <input type="text" class="form-control" placeholder="아이템 검색 / ID">
+                        </div>
                         <input type="number" class="form-control" style="width: 100px;" placeholder="수량">
                         <button class="btn btn-outline">삭제</button>
                     </div>
-                    <button class="btn btn-outline">보상 추가</button>
+                    <button class="btn btn-outline" style="margin-top: 4px;">보상 추가</button>
                 </td>
             </tr>
         </table>
 
-        <div class="form-actions" style="justify-content: flex-end; gap: 12px; margin-top: 24px;">
+        <div class="form-actions" style="justify-content: space-between; margin-top: 24px;">
             <button class="btn btn-outline" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">취소</button>
             <button class="btn btn-primary" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">등록</button>
         </div>
