@@ -1,4 +1,109 @@
-<!DOCTYPE html>
+import os
+
+qna_html = """<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주요 질의사항</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Pretendard Variable"', 'Pretendard', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <style>
+        body { background-color: #F8FAFC; }
+        .top-nav { background-color: #0F172A; color: white; }
+        .blue-header { background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%); color: white; }
+        .badge-pending { background-color: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+    </style>
+</head>
+<body class="font-sans antialiased text-slate-800 min-h-screen">
+    
+    <!-- Top Nav -->
+    <div class="top-nav px-8 py-4 flex justify-between items-center shadow-md sticky top-0 z-50">
+        <div class="text-xl font-bold tracking-tight">주요 질의사항</div>
+        <a href="index.html" class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md transition-colors text-sm font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            포털 홈으로
+        </a>
+    </div>
+
+    <div class="max-w-[1200px] mx-auto py-10 px-6">
+        
+        <!-- Blue Header Card -->
+        <div class="blue-header rounded-2xl p-8 shadow-lg mb-8 flex justify-between items-start">
+            <div>
+                <div class="flex items-center gap-3 text-3xl font-bold mb-3">
+                    <span>❓</span> 주요 질의사항 V1.0
+                </div>
+                <div class="text-blue-100 text-sm font-medium">
+                    업데이트: 2026.07.10
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-blue-100 text-sm font-medium">버전 선택</span>
+                <select class="bg-white/20 border border-white/30 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none appearance-none pr-8 relative cursor-pointer font-semibold">
+                    <option class="text-slate-800">V1.0</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Content Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-200">
+            <div class="flex items-center gap-3 text-xl font-bold mb-6 text-slate-800">
+                <span>📦</span> 1. API 수급 필요 리스트
+            </div>
+
+            <div class="overflow-hidden rounded-xl border border-slate-200">
+                <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="bg-slate-50 border-b border-slate-200 text-slate-700 font-semibold">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 w-24 text-center">번호</th>
+                            <th scope="col" class="px-6 py-4">질의 내용</th>
+                            <th scope="col" class="px-6 py-4 w-32 text-center">상태</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-center font-medium">1</td>
+                            <td class="px-6 py-4 font-medium text-slate-800">우편 관리 > 등록 템플릿 > 조회 API 수급 필요</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="badge-pending px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    대기중
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-center font-medium">2</td>
+                            <td class="px-6 py-4 font-medium text-slate-800">단건 우편 발송의 건 이력 조회 API 수급 필요</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="badge-pending px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    대기중
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>"""
+
+ia_html = """<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -126,4 +231,12 @@
 
     </div>
 </body>
-</html>
+</html>"""
+
+with open('qna.html', 'w', encoding='utf-8') as f:
+    f.write(qna_html)
+
+with open('ia.html', 'w', encoding='utf-8') as f:
+    f.write(ia_html)
+
+print("Applied screenshot template to qna.html and ia.html.")

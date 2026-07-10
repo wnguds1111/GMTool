@@ -3,450 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gravity Admin Tools - 충전내역</title>
-    <!-- Pretendard Font for perfect modern Korean typography -->
+    <title>주요 질의사항</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Pretendard Variable"', 'Pretendard', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-blue: #5282FF;
-            --admin-tools-blue: #3b82f6;
-            --sidebar-bg: #F0F4F9;
-            --main-bg: #FFFFFF;
-            --text-dark: #1e293b;
-            --text-gray: #475569;
-            --border-color: #E2E8F0;
-            --label-bg: #F8FAFC;
-            --white: #ffffff;
-            --logout-bg: #A6B2CB;
-            --active-bg: #E8F0FE;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-        }
-        body {
-            display: flex;
-            height: 100vh;
-            color: var(--text-dark);
-            background-color: var(--sidebar-bg);
-            overflow: hidden;
-            font-size: 15px;
-        }
-        /* --- Left Navigation Area --- */
-        .left-panel {
-            width: 320px;
-            display: flex;
-            flex-direction: column;
-            background-color: var(--sidebar-bg);
-        }
-        .logo-header {
-            height: 64px;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            background-color: var(--sidebar-bg);
-        }
-        .logo-header .logo-img {
-            height: 24px;
-            object-fit: contain;
-            margin-right: 6px;
-        }
-        .logo-header .logo-text {
-            font-weight: 700;
-            font-size: 17px;
-            color: var(--admin-tools-blue);
-            display: flex;
-            align-items: center;
-            letter-spacing: -0.3px;
-        }
-        .logo-header .divider {
-            color: #D1D5DB;
-            margin: 0 12px;
-            font-weight: 300;
-        }
-        .logo-header .lang-selector {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .lang-selector i {
-            color: #9CA3AF;
-            font-size: 16px;
-        }
-        .sidebars-container {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-        /* Primary Blue Sidebar */
-        .primary-sidebar {
-            width: 80px;
-            background-color: var(--primary-blue);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 24px;
-            gap: 16px;
-            border-top-right-radius: 20px;
-        }
-        .primary-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s;
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            text-decoration: none;
-        }
-        .primary-nav-item i {
-            font-size: 22px;
-            margin-bottom: 6px;
-        }
-        .primary-nav-item.active {
-            background-color: var(--white);
-            color: var(--primary-blue);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        .primary-nav-item:hover:not(.active) {
-            background-color: rgba(255,255,255,0.1);
-        }
-        /* Secondary Gray Sidebar */
-        .secondary-sidebar {
-            flex: 1;
-            background-color: var(--sidebar-bg);
-            padding: 24px 0;
-            overflow-y: auto;
-        }
-        .user-profile {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 17px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 24px;
-            padding: 0 20px;
-        }
-        .btn-logout {
-            background-color: var(--logout-bg);
-            color: var(--white);
-            border: none;
-            border-radius: 12px;
-            padding: 4px 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .sub-nav-group {
-            margin-bottom: 8px;
-            padding: 0 12px;
-        }
-        .sub-nav-header {
-            padding: 12px 16px;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--admin-tools-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-        .sub-nav-header.collapsed {
-            background-color: transparent;
-            color: var(--text-dark);
-            box-shadow: none;
-        }
-        .sub-nav-header i {
-            font-size: 14px;
-            color: inherit;
-        }
-        .sub-nav-list {
-            list-style: none;
-            padding: 8px 0;
-        }
-        .sub-nav-item {
-            padding: 10px 16px 10px 32px;
-            font-size: 15px;
-            color: var(--text-gray);
-            cursor: pointer;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-        }
-        .sub-nav-item i {
-            margin-right: 8px;
-            font-size: 14px;
-        }
-        .sub-nav-item:hover {
-            color: var(--admin-tools-blue);
-        }
-        .sub-nav-item.active {
-            color: var(--admin-tools-blue);
-            font-weight: 700;
-        }
-        /* --- Main Content Area --- */
-        .main-content {
-            flex: 1;
-            padding: 40px;
-            overflow-y: auto;
-            background-color: var(--main-bg);
-            border-top-left-radius: 20px;
-            box-shadow: -4px 0 15px rgba(0,0,0,0.03);
-        }
-        .breadcrumb {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .breadcrumb i {
-            color: #CBD5E1;
-            font-size: 14px;
-        }
-        .page-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 24px;
-        }
-        /* Search Form Table */
-        .search-table-wrapper {
-            border-top: 1px solid var(--border-color);
-            margin-bottom: 30px;
-        }
-        .search-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .search-table td {
-            border-bottom: 1px solid var(--border-color);
-            padding: 12px 16px;
-        }
-        .label-cell {
-            background-color: var(--label-bg);
-            width: 140px;
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-dark);
-            text-align: center;
-        }
-        .input-cell {
-            background-color: var(--white);
-        }
-        .form-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .form-control {
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.2s;
-            color: var(--text-dark);
-        }
-        .form-control:focus {
-            border-color: var(--admin-tools-blue);
-        }
-        select.form-control {
-            min-width: 120px;
-            background-color: var(--white);
-        }
-        input.form-control {
-            min-width: 200px;
-        }
-        input.form-control::placeholder {
-            color: #94A3B8;
-        }
-        .btn {
-            padding: 8px 20px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            border: none;
-        }
-        .btn-primary {
-            background-color: var(--admin-tools-blue);
-            color: var(--white);
-        }
-        .btn-primary:hover {
-            background-color: #2563EB;
-        }
-        /* Data Table Area */
-        .data-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-            font-size: 15px;
-            color: var(--text-gray);
-        }
-        .btn-outline {
-            border: 1px solid var(--border-color);
-            background: var(--white);
-            color: var(--text-gray);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: center;
-        }
-        .data-table th {
-            background-color: var(--label-bg);
-            padding: 12px 8px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text-dark);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .data-table td {
-            padding: 30px 8px;
-            font-size: 15px;
-            color: var(--text-gray);
-            border-bottom: 1px solid var(--border-color);
-        }
+        body { background-color: #F8FAFC; }
+        .top-nav { background-color: #0F172A; color: white; }
+        .blue-header { background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%); color: white; }
+        .badge-pending { background-color: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
     </style>
 </head>
-<body>
-    <!-- Left Panel -->
-    <div class="left-panel">
-        <div class="logo-header">
-            <img src="gravity_logo.png" alt="GRAVITY" class="logo-img" onerror="this.src='https://stage-admin.mygnjoy.com/_next/image?url=%2Fimages%2Fgravity.png&w=384&q=75'">
-            <div class="logo-text" style="cursor:pointer;" onclick="location.href='index.html'">Admin Tools</div>
-            <div class="divider">|</div>
-            <div class="lang-selector">
-                <i class="fa-solid fa-earth-americas"></i>
-                KO <i class="fa-solid fa-chevron-down" style="font-size: 12px; margin-left: 2px;"></i>
-            </div>
-        </div>
-        <div class="sidebars-container">
-            <!-- Primary Blue Sidebar -->
-            <div class="primary-sidebar">
-                <a href="#" class="primary-nav-item">
-                    <i class="fa-solid fa-user"></i>
-                    MEM
-                </a>
-                <a href="#" class="primary-nav-item">
-                    <i class="fa-solid fa-gamepad"></i>
-                    GAME
-                </a>
-                <a href="#" class="primary-nav-item">
-                    <i class="fa-solid fa-sack-dollar"></i>
-                    PAY
-                </a>
-                <a href="#" class="primary-nav-item active">
-                    <i class="fa-solid fa-globe"></i>
-                    WEB
-                </a>
-                <a href="#" class="primary-nav-item">
-                    <i class="fa-solid fa-gear"></i>
-                    SET
-                </a>
-            </div>
-            <!-- Secondary Gray Sidebar -->
-            <div class="secondary-sidebar">
-                <div class="user-profile">
-                    이주형
-                    <button class="btn-logout">로그아웃</button>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header collapsed">
-                        공통 관리
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header collapsed">
-                        GNJOY 관리
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header collapsed">
-                        라그나로크 제로
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header collapsed">
-                        RO FACTORY 관리
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="sub-nav-group">
-                    <div class="sub-nav-header">
-                        GetPoring
-                        <i class="fa-solid fa-chevron-up"></i>
-                    </div>
-                    <ul class="sub-nav-list">
-                        <li class="sub-nav-item" onclick="location.href='prereg.html'">사전예약 관리</li>
-                        <li class="sub-nav-item" onclick="location.href='notice.html'">공지 관리</li>
-                        <li class="sub-nav-item" onclick="location.href='maintenance.html'">점검 관리</li>
-                        <li class="sub-nav-item" onclick="location.href='mail_all.html'">우편 관리</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+<body class="font-sans antialiased text-slate-800 min-h-screen">
+    
+    <!-- Top Nav -->
+    <div class="top-nav px-8 py-4 flex justify-between items-center shadow-md sticky top-0 z-50">
+        <div class="text-xl font-bold tracking-tight">주요 질의사항</div>
+        <a href="index.html" class="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-md transition-colors text-sm font-medium">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            포털 홈으로
+        </a>
     </div>
-    <!-- Main Content -->
-    <div class="main-content" style="background-color: #F8FAFC; padding: 40px;">
-        <div class="breadcrumb" style="margin-bottom: 24px; font-size: 14px; color: #64748B;">
-            <i class="fa-solid fa-house" style="color: var(--admin-tools-blue); margin-right: 8px;"></i> 대시보드 <i class="fa-solid fa-chevron-right" style="margin: 0 8px; font-size: 10px;"></i> 주요 질의사항
-        </div>
+
+    <div class="max-w-[1200px] mx-auto py-10 px-6">
         
-        <div style="font-size: 24px; font-weight: 700; color: var(--text-dark); margin-bottom: 32px; display: flex; align-items: center; gap: 12px;">
-            <div style="width: 48px; height: 48px; border-radius: 12px; background: #FFE4E6; color: #E11D48; display: flex; align-items: center; justify-content: center; font-size: 24px;">❓</div>
-            주요 질의사항 (Q&A)
+        <!-- Blue Header Card -->
+        <div class="blue-header rounded-2xl p-8 shadow-lg mb-8 flex justify-between items-start">
+            <div>
+                <div class="flex items-center gap-3 text-3xl font-bold mb-3">
+                    <span>❓</span> 주요 질의사항 V1.0
+                </div>
+                <div class="text-blue-100 text-sm font-medium">
+                    업데이트: 2026.07.10
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <span class="text-blue-100 text-sm font-medium">버전 선택</span>
+                <select class="bg-white/20 border border-white/30 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 outline-none appearance-none pr-8 relative cursor-pointer font-semibold">
+                    <option class="text-slate-800">V1.0</option>
+                </select>
+            </div>
         </div>
 
-        <div style="background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 32px; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
-            <div style="font-size: 16px; font-weight: 600; color: var(--text-dark); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border-color);">
-                API 수급 필요 리스트
+        <!-- Content Card -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-slate-200">
+            <div class="flex items-center gap-3 text-xl font-bold mb-6 text-slate-800">
+                <span>📦</span> 1. API 수급 필요 리스트
             </div>
-            
-            <div style="display: flex; flex-direction: column; gap: 16px;">
-                <div style="background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 4px solid var(--admin-tools-blue); display: flex; align-items: center; gap: 16px;">
-                    <div style="width: 32px; height: 32px; border-radius: 50%; background: #E2E8F0; color: #475569; display: flex; align-items: center; justify-content: center; font-weight: 700;">1</div>
-                    <div style="font-weight: 600; color: var(--text-dark); font-size: 16px;">우편 관리 > 등록 템플릿 > 조회 API 수급 필요</div>
-                </div>
-                
-                <div style="background: #F8FAFC; border-radius: 8px; padding: 20px; border-left: 4px solid var(--admin-tools-blue); display: flex; align-items: center; gap: 16px;">
-                    <div style="width: 32px; height: 32px; border-radius: 50%; background: #E2E8F0; color: #475569; display: flex; align-items: center; justify-content: center; font-weight: 700;">2</div>
-                    <div style="font-weight: 600; color: var(--text-dark); font-size: 16px;">단건 우편 발송의 건 이력 조회 API 수급 필요</div>
-                </div>
-            </div>
-            
-            <div style="margin-top: 40px; display: flex; justify-content: flex-end;">
-                <button class="btn btn-outline" style="padding: 10px 24px; display: flex; align-items: center; gap: 8px;" onclick="location.href='index.html'">
-                    <i class="fa-solid fa-arrow-left"></i> 대시보드로 돌아가기
-                </button>
+
+            <div class="overflow-hidden rounded-xl border border-slate-200">
+                <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="bg-slate-50 border-b border-slate-200 text-slate-700 font-semibold">
+                        <tr>
+                            <th scope="col" class="px-6 py-4 w-24 text-center">번호</th>
+                            <th scope="col" class="px-6 py-4">질의 내용</th>
+                            <th scope="col" class="px-6 py-4 w-32 text-center">상태</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-center font-medium">1</td>
+                            <td class="px-6 py-4 font-medium text-slate-800">우편 관리 > 등록 템플릿 > 조회 API 수급 필요</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="badge-pending px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    대기중
+                                </span>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="px-6 py-4 text-center font-medium">2</td>
+                            <td class="px-6 py-4 font-medium text-slate-800">단건 우편 발송의 건 이력 조회 API 수급 필요</td>
+                            <td class="px-6 py-4 text-center">
+                                <span class="badge-pending px-3 py-1 rounded-full text-xs font-bold inline-flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    대기중
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+
     </div>
 </body>
 </html>
