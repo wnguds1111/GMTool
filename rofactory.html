@@ -7,7 +7,7 @@
     <title>RO FACTORY</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+    <script src="tailwind-init.js"></script>
     <style>
         /* blob 애니메이션 — Tailwind keyframe으로 대체 불가한 custom */
         @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(30px) scale(1.05); } }
@@ -52,7 +52,7 @@
                 </a>
 
                 <!-- Item 2: Admin -->
-                <a href="notice.html" target="_blank" class="group relative flex items-center justify-between p-3.5 px-5 bg-white/60 hover:bg-white border border-white/80 hover:border-emerald-200 rounded-2xl transition-all duration-500 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden">
+                <a href="admin.html" target="_blank" class="group relative flex items-center justify-between p-3.5 px-5 bg-white/60 hover:bg-white border border-white/80 hover:border-emerald-200 rounded-2xl transition-all duration-500 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-r from-emerald-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="flex items-center gap-5 z-10">
                         <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500 shadow-inner">⚙️</div>
@@ -126,22 +126,6 @@
                     </div>
                 </a>
 
-            </div>
-
-            <!-- QnA Section -->
-            <div class="mt-8 pt-8 border-t border-slate-200/60 text-left">
-                <div class="flex items-center gap-3 mb-4">
-                    <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-lg shadow-inner">❓</div>
-                    <div class="text-[18px] font-extrabold text-slate-800">주요 질의 사항 <span class="text-[13px] font-semibold text-slate-500 ml-2">(API 수급 필요 리스트)</span></div>
-                </div>
-                <div class="flex flex-col gap-3">
-                    <div class="p-4 bg-white/60 border border-white/80 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                        <div class="text-[14px] font-bold text-slate-700">1. 우편 관리 > 등록 템플릿 > 조회 API 수급 필요</div>
-                    </div>
-                    <div class="p-4 bg-white/60 border border-white/80 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                        <div class="text-[14px] font-bold text-slate-700">2. 단건 우편 발송의 건 이력 조회 API 수급 필요</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
