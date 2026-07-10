@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+ia_html = """<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -148,3 +150,8 @@
     </div>
 </body>
 </html>
+"""
+with open('ia.html', 'w', encoding='utf-8') as f:
+    f.write(ia_html)
+
+print("Restored tree structure to ia.html")
