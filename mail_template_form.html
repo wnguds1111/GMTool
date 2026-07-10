@@ -248,75 +248,54 @@
         <div class="form-group-title" style="margin-top:0;">기본 정보</div>
         <table class="form-table">
             <tr>
-                <td class="label-cell">템플릿 이름</td>
+                <td class="label-cell">Mailbox ID</td>
                 <td class="input-cell">
-                    <input type="text" class="form-control" value="test">
+                    <input type="number" class="form-control short" value="1002">
                 </td>
             </tr>
             <tr>
-                <td class="label-cell">유형</td>
+                <td class="label-cell">Mailbox 이름</td>
                 <td class="input-cell">
-                    <select class="form-control short">
-                        <option value="1" selected>일반</option>
-                        <option value="2">점검</option>
-                        <option value="3">이벤트</option>
-                    </select>
+                    <input type="text" class="form-control" value="Mailbox_05" placeholder="예: Mailbox_05">
                 </td>
             </tr>
         </table>
 
-        <div class="form-group-title">언어별 정보</div>
-
-            <div class="lang-tabs">
-                <div class="lang-tab active">EN</div>
-                <div class="lang-tab">ZH-CN</div>
-                <div class="lang-tab">DE</div>
-                <div class="lang-tab">FR</div>
-                <div class="lang-tab">ID</div>
-                <div class="lang-tab">TH</div>
-                <div class="lang-tab">TR</div>
-                <div class="lang-tab">ES</div>
-            </div>
-            <table class="form-table">
-                <tr>
-                    <td class="label-cell">제목</td>
-                    <td class="input-cell">
-                        <input type="text" class="form-control" placeholder="최대 100자 까지 입력해주세요">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="label-cell">본문</td>
-                    <td class="input-cell">
-                        <textarea class="form-control" placeholder="공지사항 본문을 입력해주세요"></textarea>
-                    </td>
-                </tr>
-            </table>
-            <div class="form-group-title">사용 정보</div>
-            <table class="form-table">
-                <tr>
-                    <td class="label-cell">게시 여부</td>
-                    <td class="input-cell">
-                        <div class="radio-group">
-                            <label class="radio-label"><input type="radio" name="publish" checked> 게시</label>
-                            <label class="radio-label"><input type="radio" name="publish"> 미게시</label>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div class="form-actions">
+        <div class="form-group-title">현지화 키 정보</div>
+        <table class="form-table">
+            <tr>
+                <td class="label-cell">제목키 (Title Key)</td>
+                <td class="input-cell">
+                    <input type="text" class="form-control" value="Mail_Reward_PreReg_Title" placeholder="예: Mail_Reward_PreReg_Title">
+                </td>
+            </tr>
+            <tr>
+                <td class="label-cell">본문키 (Body Key)</td>
+                <td class="input-cell">
+                    <input type="text" class="form-control" value="Mail_Reward_PreReg_Desc" placeholder="예: Mail_Reward_PreReg_Desc">
+                </td>
+            </tr>
+        </table>
+        
+        <div class="form-group-title">사용 정보</div>
+        <table class="form-table">
+            <tr>
+                <td class="label-cell">사용 여부</td>
+                <td class="input-cell">
+                    <div class="radio-group">
+                        <label class="radio-label"><input type="radio" name="publish" checked> 사용</label>
+                        <label class="radio-label"><input type="radio" name="publish"> 미사용</label>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <div class="form-actions">
                 <button class="btn btn-secondary" onclick="location.href='mail_template.html'">취소</button>
                 <button class="btn btn-primary" onclick="alert('등록되었습니다.'); location.href='mail_template.html'">등록하기</button>
             </div>
         </div>
     </div>
-    <script>
-        // Tab click behavior
-        document.querySelectorAll('.lang-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    </script>
+    
 </body>
 </html>
