@@ -382,6 +382,39 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+    
+        .page-lnb {
+            display: flex;
+            gap: 24px;
+            border-bottom: 1px solid #CBD5E1;
+            margin-bottom: 24px;
+            padding-bottom: 0;
+            margin-top: -10px;
+        }
+        .page-lnb-item {
+            font-size: 14px;
+            font-weight: 700;
+            color: #94A3B8;
+            padding-bottom: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+        }
+        .page-lnb-item.active {
+            color: var(--admin-tools-blue);
+        }
+        .page-lnb-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--admin-tools-blue);
+        }
+        .page-lnb-item:hover:not(.active) {
+            color: #475569;
+        }
     </style>
 </head>
 <body>
@@ -465,10 +498,9 @@
                     </div>
                     <ul class="sub-nav-list">
                         <li class="sub-nav-item" onclick="location.href='index.html'">사전예약 관리</li>
-                        <li class="sub-nav-item" onclick="location.href='notice.html'">공지 발송</li>
-                        <li class="sub-nav-item" onclick="location.href='maintenance.html'">점검 알림</li>
-                        <li class="sub-nav-item active" onclick="location.href='mail_all.html'">전체 우편 발송</li>
-                        <li class="sub-nav-item" onclick="location.href='mail_individual.html'">개별 우편 발송</li>
+                        <li class="sub-nav-item" onclick="location.href='notice.html'">공지 관리</li>
+                        <li class="sub-nav-item" onclick="location.href='maintenance.html'">점검 관리</li>
+                        <li class="sub-nav-item active" onclick="location.href='mail_all.html'">우편 관리</li>
                     </ul>
                 </div>
             </div>
@@ -478,8 +510,13 @@
     <!-- Main Content -->
     <div class="main-content">
         <div class="breadcrumb">
-            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 전체 우편 발송
+            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 우편 관리
         </div>
+
+            <div class="page-lnb">
+                <a href="mail_all.html" class="page-lnb-item active">전체 우편 발송</a>
+                <a href="mail_individual.html" class="page-lnb-item">개별 우편 발송</a>
+            </div>
 
         <div class="page-title">전체 우편 발송</div>
 
