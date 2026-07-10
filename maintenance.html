@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gravity Admin Tools - 충전내역</title>
+    <!-- Pretendard Font for perfect modern Korean typography -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-blue: #5282FF;
+            --admin-tools-blue: #3b82f6;
+            --sidebar-bg: #F0F4F9;
+            --main-bg: #FFFFFF;
+            --text-dark: #1e293b;
+            --text-gray: #475569;
+            --border-color: #E2E8F0;
+            --label-bg: #F8FAFC;
+            --white: #ffffff;
+            --logout-bg: #A6B2CB;
+            --active-bg: #E8F0FE;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            color: var(--text-dark);
+            background-color: var(--sidebar-bg);
+            overflow: hidden;
+            font-size: 13px;
+        }
+
+        /* --- Left Navigation Area --- */
+        .left-panel {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--sidebar-bg);
+        }
+
+        .logo-header {
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            background-color: var(--sidebar-bg);
+        }
+
+        .logo-header .logo-img {
+            height: 24px;
+            object-fit: contain;
+            margin-right: 6px;
+        }
+
+        .logo-header .logo-text {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--admin-tools-blue);
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-header .divider {
+            color: #D1D5DB;
+            margin: 0 12px;
+            font-weight: 300;
+        }
+        
+        .logo-header .lang-selector {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .lang-selector i {
+            color: #9CA3AF;
+            font-size: 14px;
+        }
+
+        .sidebars-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* Primary Blue Sidebar */
+        .primary-sidebar {
+            width: 80px;
+            background-color: var(--primary-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 24px;
+            gap: 16px;
+            border-top-right-radius: 20px;
+        }
+
+        .primary-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            text-decoration: none;
+        }
+
+        .primary-nav-item i {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+
+        .primary-nav-item.active {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .primary-nav-item:hover:not(.active) {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Secondary Gray Sidebar */
+        .secondary-sidebar {
+            flex: 1;
+            background-color: var(--sidebar-bg);
+            padding: 24px 0;
+            overflow-y: auto;
+        }
+
+        .user-profile {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            padding: 0 20px;
+        }
+
+        .btn-logout {
+            background-color: var(--logout-bg);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sub-nav-group {
+            margin-bottom: 8px;
+            padding: 0 12px;
+        }
+
+        .sub-nav-header {
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--admin-tools-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .sub-nav-header.collapsed {
+            background-color: transparent;
+            color: var(--text-dark);
+            box-shadow: none;
+        }
+
+        .sub-nav-header i {
+            font-size: 12px;
+            color: inherit;
+        }
+
+        .sub-nav-list {
+            list-style: none;
+            padding: 8px 0;
+        }
+
+        .sub-nav-item {
+            padding: 10px 16px 10px 32px;
+            font-size: 13px;
+            color: var(--text-gray);
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+
+        .sub-nav-item i {
+            margin-right: 8px;
+            font-size: 12px;
+        }
+
+        .sub-nav-item:hover {
+            color: var(--admin-tools-blue);
+        }
+
+        .sub-nav-item.active {
+            color: var(--admin-tools-blue);
+            font-weight: 700;
+        }
+
+        /* --- Main Content Area --- */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background-color: var(--main-bg);
+            border-top-left-radius: 20px;
+            box-shadow: -4px 0 15px rgba(0,0,0,0.03);
+        }
+
+        .breadcrumb {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .breadcrumb i {
+            color: #CBD5E1;
+            font-size: 12px;
+        }
+
+        .page-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        /* Search Form Table */
+        .search-table-wrapper {
+            border-top: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .search-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .search-table td {
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 16px;
+        }
+
+        .label-cell {
+            background-color: var(--label-bg);
+            width: 140px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .input-cell {
+            background-color: var(--white);
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-control {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s;
+            color: var(--text-dark);
+        }
+
+        .form-control:focus {
+            border-color: var(--admin-tools-blue);
+        }
+
+        select.form-control {
+            min-width: 120px;
+            background-color: var(--white);
+        }
+        
+        input.form-control {
+            min-width: 200px;
+        }
+        
+        input.form-control::placeholder {
+            color: #94A3B8;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--admin-tools-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #2563EB;
+        }
+
+        /* Data Table Area */
+        .data-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+        
+        .btn-outline {
+            border: 1px solid var(--border-color);
+            background: var(--white);
+            color: var(--text-gray);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        .data-table th {
+            background-color: var(--label-bg);
+            padding: 12px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 30px 8px;
+            font-size: 13px;
+            color: var(--text-gray);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Left Panel -->
+    <div class="left-panel">
+        <div class="logo-header">
+            <img src="gravity_logo.png" alt="GRAVITY" class="logo-img" onerror="this.src='https://stage-admin.mygnjoy.com/_next/image?url=%2Fimages%2Fgravity.png&w=384&q=75'">
+            <div class="logo-text">Admin Tools</div>
+            <div class="divider">|</div>
+            <div class="lang-selector">
+                <i class="fa-solid fa-earth-americas"></i>
+                KO <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 2px;"></i>
+            </div>
+        </div>
+        
+        <div class="sidebars-container">
+            <!-- Primary Blue Sidebar -->
+            <div class="primary-sidebar">
+                <a href="#" class="primary-nav-item">
+                    <i class="fa-solid fa-user"></i>
+                    MEM
+                </a>
+                <a href="#" class="primary-nav-item">
+                    <i class="fa-solid fa-gamepad"></i>
+                    GAME
+                </a>
+                <a href="#" class="primary-nav-item">
+                    <i class="fa-solid fa-sack-dollar"></i>
+                    PAY
+                </a>
+                <a href="#" class="primary-nav-item active">
+                    <i class="fa-solid fa-globe"></i>
+                    WEB
+                </a>
+                <a href="#" class="primary-nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                    SET
+                </a>
+            </div>
+
+            <!-- Secondary Gray Sidebar -->
+            <div class="secondary-sidebar">
+                <div class="user-profile">
+                    이주형
+                    <button class="btn-logout">로그아웃</button>
+                </div>
+
+                <div class="sub-nav-group">
+                    <div class="sub-nav-header collapsed">
+                        공통 관리
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="sub-nav-group">
+                    <div class="sub-nav-header collapsed">
+                        GNJOY 관리
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="sub-nav-group">
+                    <div class="sub-nav-header collapsed">
+                        라그나로크 제로
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="sub-nav-group">
+                    <div class="sub-nav-header collapsed">
+                        RO FACTORY 관리
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <div class="sub-nav-group">
+                    <div class="sub-nav-header">
+                        GetPoring
+                        <i class="fa-solid fa-chevron-up"></i>
+                    </div>
+                    <ul class="sub-nav-list">
+                        <li class="sub-nav-item" onclick="location.href='index.html'">사전예약 관리</li>
+                        <li class="sub-nav-item" onclick="location.href='notice.html'">공지 발송</li>
+                        <li class="sub-nav-item active" onclick="location.href='maintenance.html'">점검 알림</li>
+                        <li class="sub-nav-item" onclick="location.href='mail_all.html'">전체 우편 발송</li>
+                        <li class="sub-nav-item" onclick="location.href='mail_individual.html'">개별 우편 발송</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="breadcrumb">
+            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 점검 알림
+        </div>
+
+        <div class="page-title">점검 알림</div>
+
+        <div style="padding: 40px; text-align: center; color: #94A3B8; font-size: 14px; border: 2px dashed #E2E8F0; border-radius: 8px; margin-top: 20px;">콘텐츠 영역 (준비 중)</div>
+    </div>
+
+</body>
+</html>
