@@ -78,7 +78,7 @@
                 </a>
 
                 <!-- Item 3: 주요 질의사항 -->
-                <button onclick="document.getElementById('qna-content').classList.toggle('hidden'); document.getElementById('qna-arrow').classList.toggle('rotate-180');" class="group relative flex items-center justify-between p-3.5 px-5 bg-white/60 hover:bg-white border border-white/80 hover:border-rose-200 rounded-2xl transition-all duration-500 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden w-full text-left">
+                <a href="qna.html" class="group relative flex items-center justify-between p-3.5 px-5 bg-white/60 hover:bg-white border border-white/80 hover:border-rose-200 rounded-2xl transition-all duration-500 shadow-sm hover:shadow-xl hover:-translate-y-1 overflow-hidden w-full text-left">
                     <div class="absolute inset-0 bg-gradient-to-r from-rose-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div class="flex items-center gap-5 z-10">
                         <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500 shadow-inner">❓</div>
@@ -88,19 +88,9 @@
                         </div>
                     </div>
                     <div class="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-rose-500 group-hover:text-white group-hover:border-rose-500 transition-all duration-500 z-10">
-                        <svg id="qna-arrow" class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-5 h-5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
                     </div>
-                </button>
-                
-                <div id="qna-content" class="hidden flex flex-col gap-2 mt-1 mb-2 ml-2 mr-2">
-                    <div class="p-4 bg-white/80 border border-rose-100 rounded-xl shadow-sm">
-                        <div class="text-[14px] font-bold text-slate-700">1. 우편 관리 > 등록 템플릿 > 조회 API 수급 필요</div>
-                    </div>
-                    <div class="p-4 bg-white/80 border border-rose-100 rounded-xl shadow-sm">
-                        <div class="text-[14px] font-bold text-slate-700">2. 단건 우편 발송의 건 이력 조회 API 수급 필요</div>
-                    </div>
-                </div>
-
+                </a>
             </div>
         </div>
     </div>
