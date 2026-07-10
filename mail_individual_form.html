@@ -207,7 +207,7 @@
                         <li class="sub-nav-item" onclick="location.href='index.html'">사전예약 관리</li>
                         <li class="sub-nav-item" onclick="location.href='notice.html'">공지 관리</li>
                         <li class="sub-nav-item" onclick="location.href='maintenance.html'">점검 관리</li>
-                        <li class="sub-nav-item active" onclick="location.href='mail_all.html'">우편 관리</li>
+                        <li class="sub-nav-item active" onclick="location.href='mail_individual.html'">우편 관리</li>
                     </ul>
                 </div>
             </div>
@@ -225,97 +225,129 @@
                 <a href="mail_individual.html" class="page-lnb-item active">개별 우편 발송</a>
             </div>
 
-        
-        <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-            <div></div>
+        <div class="form-header-bar" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
+            <div>
+                <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">단건 우편 작성</div>
+                <div style="font-size: 15px; color: #64748B;">특정 플레이어에게 직접 발송 (ShardID는 PlayerID에서 자동 계산)</div>
+            </div>
             <i class="fa-solid fa-xmark" style="font-size: 24px; color: #94A3B8; cursor: pointer;" onclick="location.href='mail_individual.html'"></i>
         </div>
 
-        <div style="border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; background: var(--white); margin-bottom: 40px;">
-            <div style="font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--text-dark);">단건 우편</div>
-            <div style="font-size: 13px; color: #64748B; margin-bottom: 24px;">특정 플레이어에게 직접 발송 (ShardID는 PlayerID에서 자동 계산)</div>
-            
-            <!-- PlayerID and ShardID -->
-            <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-                <div style="flex: 1;">
-                    <div style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">PlayerID</div>
-                    <input type="text" class="form-control">
-                </div>
-                <div style="width: 200px;">
-                    <div style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">ShardID (자동)</div>
-                    <input type="text" class="form-control" value="-" readonly style="background-color: #F8FAFC;">
-                </div>
-            </div>
+        <table class="form-table">
 
-            <!-- 발송 방식 -->
-            <div style="margin-bottom: 16px;">
-                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">발송 방식</div>
-                <div style="display: flex; gap: 8px;">
-                    <button class="btn btn-primary" id="btn-free" onclick="toggleMode('free')" style="padding: 6px 12px; font-size: 13px;">자유 텍스트</button>
-                    <button class="btn btn-outline" id="btn-template" onclick="toggleMode('template')" style="padding: 6px 12px; font-size: 13px;">등록 템플릿</button>
-                </div>
-            </div>
-
-            <!-- 등록 템플릿 -->
-            <div id="row-template" style="display: none; margin-bottom: 16px;">
-                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">등록 우편 (Mailbox)</div>
-                <select class="form-control" style="width: 100%;">
-                    <option value="1">[1] Mailbox_01</option>
-                    <option value="100">[100] Mailbox_02</option>
-                    <option value="1000">[1000] Mailbox_03</option>
-                    <option value="1001">[1001] Mailbox_04</option>
-                    <option value="1002" selected>[1002] Mailbox_05</option>
-                    <option value="2001">[2001] Mailbox_05</option>
-                </select>
-                <div style="font-size: 13px; color: #64748B; margin-top: 8px;">제목키 Mail_Reward_PreReg_Title · 본문키 Mail_Reward_PreReg_Desc · 유저 언어로 자동 현지화</div>
-            </div>
-            
-            <!-- 제목 -->
-            <div id="row-title" style="margin-bottom: 16px;">
-                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">제목</div>
-                <input type="text" class="form-control">
-            </div>
-
-            <!-- 본문 -->
-            <div id="row-body" style="margin-bottom: 16px;">
-                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">본문</div>
-                <textarea class="form-control" style="min-height: 100px;"></textarea>
-            </div>
-
-            <!-- 만료일 -->
-            <div style="margin-bottom: 16px;">
-                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">만료일 (UTC, 필수)</div>
-                <input type="datetime-local" class="form-control" style="width: 100%;">
-            </div>
-
-            <!-- 보상 -->
-            <div style="margin-bottom: 24px;">
-                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;">보상</div>
-                <div class="reward-row" style="margin-bottom: 8px;">
-                    <div class="reward-input-wrap" style="flex: 1; width: auto;">
-                        <input type="text" class="form-control" value="1 Paid_Zeny" readonly style="border-color: var(--admin-tools-blue); box-shadow: 0 0 0 1px var(--admin-tools-blue);">
-                        <span class="badge paid">유료</span>
+            <tr>
+                <td class="label-cell">PlayerID / ShardID</td>
+                <td class="input-cell">
+                    <div style="display: flex; gap: 16px; align-items: center;">
+                        <input type="text" class="form-control" style="width: 300px;" placeholder="PlayerID 입력">
+                        <span style="font-size: 14px; font-weight: 600; color: var(--text-dark);">ShardID (자동)</span>
+                        <input type="text" class="form-control" style="width: 150px; background-color: #F8FAFC;" value="-" readonly>
                     </div>
-                    <input type="text" class="form-control" style="width: 100px;" placeholder="수량">
-                    <button class="btn btn-outline" style="padding: 8px 16px;">삭제</button>
-                </div>
-                <div class="reward-row" style="margin-bottom: 8px;">
-                    <div class="reward-input-wrap" style="flex: 1; width: auto;">
-                        <input type="text" class="form-control" value="1 Paid_Zeny" readonly style="border-color: var(--admin-tools-blue); box-shadow: 0 0 0 1px var(--admin-tools-blue);">
-                        <span class="badge paid">유료</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="label-cell">발송 방식</td>
+                <td class="input-cell">
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-primary" id="btn-free" onclick="toggleMode('free')">자유 텍스트</button>
+                        <button class="btn btn-outline" id="btn-template" onclick="toggleMode('template')">등록 템플릿</button>
                     </div>
-                    <input type="text" class="form-control" style="width: 100px;" placeholder="수량">
-                    <button class="btn btn-outline" style="padding: 8px 16px;">삭제</button>
-                </div>
-                <button class="btn btn-outline" style="padding: 6px 12px; font-size: 13px; margin-top: 4px;">보상 추가</button>
-            </div>
+                </td>
+            </tr>
+            <tr id="row-template" style="display: none;">
+                <td class="label-cell">등록 우편 (Mailbox)</td>
+                <td class="input-cell">
+                    <select class="form-control" style="width: 300px;">
+                        <option value="1">[1] Mailbox_01</option>
+                        <option value="100">[100] Mailbox_02</option>
+                        <option value="1000">[1000] Mailbox_03</option>
+                        <option value="1001">[1001] Mailbox_04</option>
+                        <option value="1002" selected>[1002] Mailbox_05</option>
+                        <option value="2001">[2001] Mailbox_05</option>
+                    </select>
+                    <div style="font-size: 13px; color: #64748B; margin-top: 8px;">제목키 Mail_Reward_PreReg_Title · 본문키 Mail_Reward_PreReg_Desc · 유저 언어로 자동 현지화</div>
+                </td>
+            </tr>
+            <tr id="row-title">
+                <td class="label-cell">제목</td>
+                <td class="input-cell">
+                    <input type="text" class="form-control" placeholder="제목을 입력하세요">
+                </td>
+            </tr>
+            <tr id="row-body">
+                <td class="label-cell">본문</td>
+                <td class="input-cell">
+                    <textarea class="form-control" placeholder="본문 내용을 입력하세요"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td class="label-cell">만료일<br><span style="font-size: 13px; color: #94A3B8; font-weight: 400;">(UTC, 비우면 샤드 기본)</span></td>
+                <td class="input-cell">
+                    <input type="datetime-local" class="form-control" style="width: 250px;">
+                </td>
+            </tr>
+            <tr>
+                <td class="label-cell">보상</td>
+                <td class="input-cell">
+                    <div class="reward-row">
+                        <div class="reward-input-wrap">
+                            <input type="text" class="form-control" value="2 Free_Zeny" readonly>
+                            <span class="badge free">무료</span>
+                        </div>
+                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="1,000">
+                        <button class="btn btn-outline">삭제</button>
+                    </div>
+                    <div class="reward-row">
+                        <div class="reward-input-wrap">
+                            <input type="text" class="form-control" value="3 Paid_Dia" readonly>
+                            <span class="badge paid">유료</span>
+                        </div>
+                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="500">
+                        <button class="btn btn-outline">삭제</button>
+                    </div>
+                    <div class="reward-row">
+                        <div class="reward-input-wrap">
+                            <input type="text" class="form-control" placeholder="아이템 검색 / ID" onclick="toggleDropdown(this)" onfocus="toggleDropdown(this)" readonly style="cursor: pointer; background-color: var(--white);">
+                            <div class="dropdown-menu">
+                                <div class="dropdown-item" onclick="selectItem(this, '1 Paid_Zeny', 'paid')">
+                                    <span class="dropdown-item-text">1 Paid_Zeny</span>
+                                    <span class="badge paid">유료</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectItem(this, '2 Free_Zeny', 'free')">
+                                    <span class="dropdown-item-text">2 Free_Zeny</span>
+                                    <span class="badge free">무료</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectItem(this, '3 Paid_Dia', 'paid')">
+                                    <span class="dropdown-item-text">3 Paid_Dia</span>
+                                    <span class="badge paid">유료</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectItem(this, '4 Free_Dia', 'free')">
+                                    <span class="dropdown-item-text">4 Free_Dia</span>
+                                    <span class="badge free">무료</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectItem(this, '5 Valhalla Pass', 'free')">
+                                    <span class="dropdown-item-text">5 Valhalla Pass</span>
+                                    <span class="badge free">무료</span>
+                                </div>
+                                <div class="dropdown-item" onclick="selectItem(this, '6 Nickname Change Ticket', 'free')">
+                                    <span class="dropdown-item-text">6 Nickname Change Ticket</span>
+                                    <span class="badge free">무료</span>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="number" class="form-control" style="width: 100px;" placeholder="수량">
+                        <button class="btn btn-outline">삭제</button>
+                    </div>
+                    <button class="btn btn-outline" style="margin-top: 4px;">보상 추가</button>
+                </td>
+            </tr>
+        </table>
 
-            <!-- 발송 버튼 -->
-            <div>
-                <button class="btn btn-primary" style="padding: 8px 24px; font-weight: 600;" onclick="location.href='mail_individual.html'">발송</button>
-            </div>
+        <div class="form-actions" style="justify-content: space-between; margin-top: 24px;">
+            <button class="btn btn-outline" style="padding: 10px 24px;" onclick="location.href='mail_individual.html'">취소</button>
+            <button class="btn btn-primary" style="padding: 10px 24px;" onclick="location.href='mail_individual.html'">발송</button>
         </div>
-</div>
+    </div>
     
     <script>
         function toggleMode(mode) {
