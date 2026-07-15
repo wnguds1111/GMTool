@@ -16,12 +16,12 @@ for i in range(10):
         # Let's just make it already in the '게임서버 적용' state, or make all of them '샤드 적용'.
         # I'll make the applied ones '게임서버 적용' with the primary style.
         shard_html = f"""<div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                            <button class="btn" style="padding: 2px 10px; font-size: 13px; background-color: #16A34A; color: white; border: 1px solid #16A34A; cursor: not-allowed;" disabled>게임서버 적용</button>
+                            <button class="btn" style="padding: 2px 10px; font-size: 13px; background-color: #16A34A; color: white; border: 1px solid #16A34A; cursor: not-allowed;" disabled>적용 완료</button>
                         </div>"""
     else:
         # Button on the left without 0/0. With onClick confirm.
         shard_html = f"""<div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                            <button class="btn btn-outline" style="padding: 2px 10px; font-size: 13px;" onclick="applyShard(this)">샤드 적용</button>
+                            <button class="btn btn-outline" style="padding: 2px 10px; font-size: 13px;" onclick="applyShard(this)">게임서버 적용</button>
                         </div>"""
     
     # Manage is always '상세'
@@ -49,7 +49,7 @@ script_code = """
     <script>
         function applyShard(btn) {
             if (confirm("게임서버에 적용하시겠습니까?")) {
-                btn.innerText = "게임서버 적용";
+                btn.innerText = "적용 완료";
                 btn.className = "btn";
                 btn.style.backgroundColor = "#16A34A";
                 btn.style.color = "white";
