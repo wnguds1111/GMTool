@@ -735,8 +735,12 @@
     <script>
         function applyShard(btn) {
             if (confirm("게임서버에 적용하시겠습니까?")) {
-                btn.innerText = "게임서버 적용";
-                btn.className = "btn btn-primary";
+                btn.innerText = "적용 완료";
+                btn.className = "btn";
+                btn.style.backgroundColor = "#16A34A";
+                btn.style.color = "white";
+                btn.style.borderColor = "#16A34A";
+                btn.style.cursor = "not-allowed";
                 btn.disabled = true;
             }
         }
