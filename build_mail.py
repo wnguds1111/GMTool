@@ -107,7 +107,7 @@ form_html = """
                 </td>
             </tr>
             <tr>
-                <td class="label-cell">만료일<br><span style="font-size: 13px; color: #94A3B8; font-weight: 400;">(UTC, 비우면 샤드 기본)</span></td>
+                <td class="label-cell">만료일</td>
                 <td class="input-cell">
                     <input type="datetime-local" class="form-control" style="width: 250px;">
                 </td>

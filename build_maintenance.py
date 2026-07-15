@@ -45,7 +45,7 @@ maintenance_content = """<div class="main-content">
             <!-- Checkbox -->
             <label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 24px; cursor: pointer; width: fit-content;">
                 <input type="checkbox" id="maintenanceToggle" onchange="toggleMaintenance()" style="width: 16px; height: 16px; accent-color: var(--primary-blue);">
-                점검 모드 활성화
+                <span id="maintenanceToggleText">점검 모드 활성화</span>
             </label>
 
             <!-- Textarea -->
@@ -78,6 +78,7 @@ maintenance_content = """<div class="main-content">
                 const toggle = document.getElementById('maintenanceToggle');
                 const box = document.getElementById('statusBox');
                 const btn = document.getElementById('saveBtn');
+                const text = document.getElementById('maintenanceToggleText');
 
                 if (toggle.checked) {
                     box.style.backgroundColor = '#FEF2F2';
@@ -87,6 +88,8 @@ maintenance_content = """<div class="main-content">
                     
                     btn.style.backgroundColor = '#EF4444';
                     btn.style.borderColor = '#EF4444';
+                    
+                    text.innerText = '점검 모드 해제';
                 } else {
                     box.style.backgroundColor = '#F0FDF4';
                     box.style.borderColor = '#BBF7D0';
@@ -95,6 +98,8 @@ maintenance_content = """<div class="main-content">
                     
                     btn.style.backgroundColor = 'var(--primary-blue)';
                     btn.style.borderColor = 'var(--primary-blue)';
+                    
+                    text.innerText = '점검 모드 활성화';
                 }
             }
         </script>

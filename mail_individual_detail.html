@@ -207,7 +207,7 @@
                         <li class="sub-nav-item" onclick="location.href='prereg.html'">사전예약 관리</li>
                         <li class="sub-nav-item" onclick="location.href='notice.html'">공지 관리</li>
                         <li class="sub-nav-item" onclick="location.href='maintenance.html'">점검 관리</li>
-                        <li class="sub-nav-item active" onclick="location.href='mail_all.html'">우편 관리</li>
+                        <li class="sub-nav-item active" onclick="location.href='mail_individual.html'">우편 관리</li>
                         <li class="sub-nav-item" onclick="location.href='user_management.html'">게임 유저 관리</li>
                         <li class="sub-nav-item" onclick="location.href='user_log.html'">유저 행동 로그</li>
                     </ul>
@@ -219,23 +219,34 @@
     
     <div class="main-content">
         <div class="breadcrumb">
-            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 우편 관리 <i class="fa-solid fa-chevron-right"></i> 전체 우편 작성
+            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 우편 관리 <i class="fa-solid fa-chevron-right"></i> 개별 우편 작성
         </div>
 
         <div class="page-lnb">
-                <a href="mail_all.html" class="page-lnb-item active">전체 우편 발송</a>
-                <a href="mail_individual.html" class="page-lnb-item">개별 우편 발송</a>
+                <a href="mail_all.html" class="page-lnb-item">전체 우편 발송</a>
+                <a href="mail_individual.html" class="page-lnb-item active">개별 우편 발송</a>
             </div>
 
         <div class="form-header-bar" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
             <div>
-                <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">전체 우편 작성</div>
-                <div style="font-size: 15px; color: #64748B;">중앙 등록 후 목록에서 '샤드 적용'을 실행하세요.</div>
+                <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">단건 우편 상세</div>
+                <div style="font-size: 15px; color: #64748B;">특정 플레이어에게 직접 발송 (ShardID는 PlayerID에서 자동 계산)</div>
             </div>
-            <i class="fa-solid fa-xmark" style="font-size: 24px; color: #94A3B8; cursor: pointer;" onclick="location.href='mail_all.html'"></i>
+            <i class="fa-solid fa-xmark" style="font-size: 24px; color: #94A3B8; cursor: pointer;" onclick="location.href='mail_individual.html'"></i>
         </div>
 
         <table class="form-table">
+
+            <tr>
+                <td class="label-cell">PlayerID / ShardID</td>
+                <td class="input-cell">
+                    <div style="display: flex; gap: 16px; align-items: center;">
+                        <input readonly type="text" class="form-control" style="width: 300px;" placeholder="PlayerID 입력">
+                        <span style="font-size: 14px; font-weight: 600; color: var(--text-dark);">ShardID (자동)</span>
+                        <input readonly type="text" class="form-control" style="width: 150px; background-color: #F8FAFC;" value="-" readonly>
+                    </div>
+                </td>
+            </tr>
             <tr>
                 <td class="label-cell">발송 방식</td>
                 <td class="input-cell">
@@ -248,7 +259,7 @@
             <tr id="row-template" style="display: none;">
                 <td class="label-cell">등록 우편 (Mailbox)</td>
                 <td class="input-cell">
-                    <select class="form-control" style="width: 300px;">
+                    <select disabled class="form-control" style="width: 300px;">
                         <option value="1">[1] Mailbox_01</option>
                         <option value="100">[100] Mailbox_02</option>
                         <option value="1000">[1000] Mailbox_03</option>
@@ -262,19 +273,19 @@
             <tr id="row-title">
                 <td class="label-cell">제목</td>
                 <td class="input-cell">
-                    <input type="text" class="form-control" placeholder="제목을 입력하세요">
+                    <input readonly type="text" class="form-control" placeholder="제목을 입력하세요">
                 </td>
             </tr>
             <tr id="row-body">
                 <td class="label-cell">본문</td>
                 <td class="input-cell">
-                    <textarea class="form-control" placeholder="본문 내용을 입력하세요"></textarea>
+                    <textarea readonly class="form-control" placeholder="본문 내용을 입력하세요"></textarea>
                 </td>
             </tr>
             <tr>
                 <td class="label-cell">만료일</td>
                 <td class="input-cell">
-                    <input type="datetime-local" class="form-control" style="width: 250px;">
+                    <input readonly type="datetime-local" class="form-control" style="width: 250px;">
                 </td>
             </tr>
             <tr>
@@ -282,23 +293,23 @@
                 <td class="input-cell">
                     <div class="reward-row">
                         <div class="reward-input-wrap">
-                            <input type="text" class="form-control" value="2 Free_Zeny" readonly>
+                            <input readonly type="text" class="form-control" value="2 Free_Zeny" readonly>
                             <span class="badge free">무료</span>
                         </div>
-                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="1,000">
+                        <input readonly type="text" class="form-control" style="width: 100px; text-align: right;" value="1,000">
                         <button class="btn btn-outline">삭제</button>
                     </div>
                     <div class="reward-row">
                         <div class="reward-input-wrap">
-                            <input type="text" class="form-control" value="3 Paid_Dia" readonly>
+                            <input readonly type="text" class="form-control" value="3 Paid_Dia" readonly>
                             <span class="badge paid">유료</span>
                         </div>
-                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="500">
+                        <input readonly type="text" class="form-control" style="width: 100px; text-align: right;" value="500">
                         <button class="btn btn-outline">삭제</button>
                     </div>
                     <div class="reward-row">
                         <div class="reward-input-wrap">
-                            <input type="text" class="form-control" placeholder="아이템 검색 / ID" onclick="toggleDropdown(this)" onfocus="toggleDropdown(this)" readonly style="cursor: pointer; background-color: var(--white);">
+                            <input readonly type="text" class="form-control" placeholder="아이템 검색 / ID" onclick="toggleDropdown(this)" onfocus="toggleDropdown(this)" readonly style="cursor: pointer; background-color: var(--white);">
                             <div class="dropdown-menu">
                                 <div class="dropdown-item" onclick="selectItem(this, '1 Paid_Zeny', 'paid')">
                                     <span class="dropdown-item-text">1 Paid_Zeny</span>
@@ -326,7 +337,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="number" class="form-control" style="width: 100px;" placeholder="수량">
+                        <input readonly type="number" class="form-control" style="width: 100px;" placeholder="수량">
                         <button class="btn btn-outline">삭제</button>
                     </div>
                     <button class="btn btn-outline" style="margin-top: 4px;">보상 추가</button>
@@ -335,8 +346,7 @@
         </table>
 
         <div class="form-actions" style="justify-content: space-between; margin-top: 24px;">
-            <button class="btn btn-outline" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">취소</button>
-            <button class="btn btn-primary" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">등록</button>
+            <button class="btn btn-primary" style="padding: 10px 24px;" onclick="location.href='mail_individual.html'">목록</button>
         </div>
     </div>
     

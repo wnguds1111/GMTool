@@ -219,7 +219,7 @@
     
     <div class="main-content">
         <div class="breadcrumb">
-            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 우편 관리 <i class="fa-solid fa-chevron-right"></i> 전체 우편 작성
+            WEB <i class="fa-solid fa-chevron-right"></i> GetPoring <i class="fa-solid fa-chevron-right"></i> 우편 관리 <i class="fa-solid fa-chevron-right"></i> 전체 우편 상세
         </div>
 
         <div class="page-lnb">
@@ -229,7 +229,7 @@
 
         <div class="form-header-bar" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px;">
             <div>
-                <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">전체 우편 작성</div>
+                <div style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">전체 우편 상세</div>
                 <div style="font-size: 15px; color: #64748B;">중앙 등록 후 목록에서 '샤드 적용'을 실행하세요.</div>
             </div>
             <i class="fa-solid fa-xmark" style="font-size: 24px; color: #94A3B8; cursor: pointer;" onclick="location.href='mail_all.html'"></i>
@@ -248,7 +248,7 @@
             <tr id="row-template" style="display: none;">
                 <td class="label-cell">등록 우편 (Mailbox)</td>
                 <td class="input-cell">
-                    <select class="form-control" style="width: 300px;">
+                    <select disabled class="form-control" style="width: 300px;">
                         <option value="1">[1] Mailbox_01</option>
                         <option value="100">[100] Mailbox_02</option>
                         <option value="1000">[1000] Mailbox_03</option>
@@ -262,19 +262,19 @@
             <tr id="row-title">
                 <td class="label-cell">제목</td>
                 <td class="input-cell">
-                    <input type="text" class="form-control" placeholder="제목을 입력하세요">
+                    <input readonly type="text" class="form-control" placeholder="제목을 입력하세요">
                 </td>
             </tr>
             <tr id="row-body">
                 <td class="label-cell">본문</td>
                 <td class="input-cell">
-                    <textarea class="form-control" placeholder="본문 내용을 입력하세요"></textarea>
+                    <textarea readonly class="form-control" placeholder="본문 내용을 입력하세요"></textarea>
                 </td>
             </tr>
             <tr>
                 <td class="label-cell">만료일</td>
                 <td class="input-cell">
-                    <input type="datetime-local" class="form-control" style="width: 250px;">
+                    <input readonly type="datetime-local" class="form-control" style="width: 250px;">
                 </td>
             </tr>
             <tr>
@@ -282,23 +282,23 @@
                 <td class="input-cell">
                     <div class="reward-row">
                         <div class="reward-input-wrap">
-                            <input type="text" class="form-control" value="2 Free_Zeny" readonly>
+                            <input readonly type="text" class="form-control" value="2 Free_Zeny" readonly>
                             <span class="badge free">무료</span>
                         </div>
-                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="1,000">
+                        <input readonly type="text" class="form-control" style="width: 100px; text-align: right;" value="1,000">
                         <button class="btn btn-outline">삭제</button>
                     </div>
                     <div class="reward-row">
                         <div class="reward-input-wrap">
-                            <input type="text" class="form-control" value="3 Paid_Dia" readonly>
+                            <input readonly type="text" class="form-control" value="3 Paid_Dia" readonly>
                             <span class="badge paid">유료</span>
                         </div>
-                        <input type="text" class="form-control" style="width: 100px; text-align: right;" value="500">
+                        <input readonly type="text" class="form-control" style="width: 100px; text-align: right;" value="500">
                         <button class="btn btn-outline">삭제</button>
                     </div>
                     <div class="reward-row">
                         <div class="reward-input-wrap">
-                            <input type="text" class="form-control" placeholder="아이템 검색 / ID" onclick="toggleDropdown(this)" onfocus="toggleDropdown(this)" readonly style="cursor: pointer; background-color: var(--white);">
+                            <input readonly type="text" class="form-control" placeholder="아이템 검색 / ID" onclick="toggleDropdown(this)" onfocus="toggleDropdown(this)" readonly style="cursor: pointer; background-color: var(--white);">
                             <div class="dropdown-menu">
                                 <div class="dropdown-item" onclick="selectItem(this, '1 Paid_Zeny', 'paid')">
                                     <span class="dropdown-item-text">1 Paid_Zeny</span>
@@ -326,7 +326,7 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="number" class="form-control" style="width: 100px;" placeholder="수량">
+                        <input readonly type="number" class="form-control" style="width: 100px;" placeholder="수량">
                         <button class="btn btn-outline">삭제</button>
                     </div>
                     <button class="btn btn-outline" style="margin-top: 4px;">보상 추가</button>
@@ -335,8 +335,7 @@
         </table>
 
         <div class="form-actions" style="justify-content: space-between; margin-top: 24px;">
-            <button class="btn btn-outline" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">취소</button>
-            <button class="btn btn-primary" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">등록</button>
+            <button class="btn btn-primary" style="padding: 10px 24px;" onclick="location.href='mail_all.html'">목록</button>
         </div>
     </div>
     
