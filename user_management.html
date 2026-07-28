@@ -555,7 +555,7 @@
             <div style="display: flex; gap: 40px; margin-bottom: 24px; padding: 16px 24px; background-color: var(--label-bg); border-radius: 8px; border: 1px solid var(--border-color);">
                 <div style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
                     <div style="display: flex; align-items: center;"><span style="color: #64748B; font-size: 13px; width: 70px;">AID</span> <span style="color: var(--primary-blue); font-weight: 600; font-size: 14px;">36690841913266176</span></div>
-                    <div style="display: flex; align-items: center;"><span style="color: #64748B; font-size: 13px; width: 70px;">계정상태</span> <span style="color: #EF4444; font-weight: 600; font-size: 14px;">정지(SUSPEND)</span></div>
+                    <div style="display: flex; align-items: center;"><span style="color: #64748B; font-size: 13px; width: 70px;">계정상태</span> <span id="accountStatusVal" style="color: #EF4444; font-weight: 600; font-size: 14px;">정지(SUSPEND)</span></div>
                 </div>
                 <div style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
                     <div style="display: flex; align-items: center;"><span style="color: #64748B; font-size: 13px; width: 80px;">연동</span> <span style="font-weight: 600; color: var(--text-dark); font-size: 14px;">게스트</span></div>
@@ -590,7 +590,7 @@
             </div>
 
             <!-- Sanction Info Box -->
-            <div style="background-color: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 20px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <div id="sanctionInfoBox" style="background-color: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px; padding: 20px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
                 <div style="font-size: 14px;">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
                         <span style="color: #991B1B; font-weight: 700; width: 60px;">계정 제재:</span>
@@ -611,13 +611,33 @@
 
             <!-- Timeline Accordion -->
             <div style="border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 32px; overflow: hidden;">
-                <div style="padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background-color: var(--label-bg);">
+                <div style="padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background-color: var(--label-bg);" onclick="toggleTimeline()">
                     <div>
                         <span style="font-weight: 700; color: var(--text-dark); font-size: 14px;">활동 타임라인</span> <span style="color: #94A3B8; font-size: 13px; margin-left: 8px; font-weight: 500;">(제재·변경이력)</span>
                     </div>
-                    <div style="color: #64748B; font-size: 13px; font-weight: 600;">
+                    <div id="timelineBtnText" style="color: #64748B; font-size: 13px; font-weight: 600;">
                         펼치기 <i class="fa-solid fa-chevron-down ml-1"></i>
                     </div>
+                </div>
+                <div id="timelineContent" style="display: none; border-top: 1px solid var(--border-color); background: white;">
+                    <table class="data-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; margin-bottom: 0;">
+                        <thead style="background-color: var(--label-bg); border-bottom: 1px solid var(--border-color);">
+                            <tr>
+                                <th style="padding: 12px 16px; width: 15%; font-weight: 600; color: var(--text-gray);">유형</th>
+                                <th style="padding: 12px 16px; width: 45%; font-weight: 600; color: var(--text-gray);">제재/변경 내용</th>
+                                <th style="padding: 12px 16px; width: 25%; font-weight: 600; color: var(--text-gray);">등록일</th>
+                                <th style="padding: 12px 16px; width: 15%; font-weight: 600; color: var(--text-gray);">처리자</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timelineTableBody">
+                            <tr>
+                                <td style="padding: 16px;"><span style="background-color: #FEE2E2; color: #EF4444; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">계정 제재</span></td>
+                                <td style="padding: 16px; color: #DC2626; font-weight: 600;">제재 중 — test (만료 2026. 7. 11. 오후 3:14:00)</td>
+                                <td style="padding: 16px; color: var(--text-dark);">2026. 7. 10. 오후 3:14:00</td>
+                                <td style="padding: 16px; color: var(--text-gray);">이주형</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -679,7 +699,7 @@
                 </div>
                 <div style="padding: 16px 24px; background: #F8FAFC; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 12px;">
                     <button style="background: white; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; color: var(--text-dark); cursor: pointer;" onclick="closeModal('sanctionModal')">취소</button>
-                    <button style="background-color: #FEE2E2; color: #EF4444; border: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer;">제재 적용</button>
+                    <button style="background-color: #FEE2E2; color: #EF4444; border: none; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 600; cursor: pointer;" onclick="applySanction()">제재 적용</button>
                 </div>
             </div>
         </div>
@@ -722,7 +742,7 @@
                 </div>
                 <div style="padding: 16px 20px; background: #F8FAFC; border-top: 1px solid var(--border-color); display: flex; justify-content: flex-end; gap: 10px;">
                     <button style="background: white; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; color: var(--text-dark); cursor: pointer;" onclick="closeModal('releaseSanctionModal')">취소</button>
-                    <button style="background-color: #FEE2E2; color: #EF4444; border: none; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="closeModal('releaseSanctionModal')">확인</button>
+                    <button style="background-color: #FEE2E2; color: #EF4444; border: none; padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="confirmReleaseSanction()">확인</button>
                 </div>
             </div>
         </div>
@@ -749,11 +769,116 @@
             document.getElementById('searchResultCard').style.display = 'block';
         }
 
-                function openModal(id) {
+        function openModal(id) {
             document.getElementById(id).style.display = 'flex';
         }
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
+        }
+
+        function toggleTimeline() {
+            const content = document.getElementById('timelineContent');
+            const btnText = document.getElementById('timelineBtnText');
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+                btnText.innerHTML = '접기 <i class="fa-solid fa-chevron-up ml-1"></i>';
+            } else {
+                content.style.display = 'none';
+                btnText.innerHTML = '펼치기 <i class="fa-solid fa-chevron-down ml-1"></i>';
+            }
+        }
+
+        function confirmReleaseSanction() {
+            closeModal('releaseSanctionModal');
+            
+            const statusEl = document.getElementById('accountStatusVal');
+            if (statusEl) {
+                statusEl.style.color = '#10B981';
+                statusEl.textContent = '정상(NORMAL)';
+            }
+
+            const sanctionBox = document.getElementById('sanctionInfoBox');
+            if (sanctionBox) {
+                sanctionBox.style.backgroundColor = '#F8FAFC';
+                sanctionBox.style.borderColor = '#E2E8F0';
+                
+                sanctionBox.innerHTML = `
+                    <div style="font-size: 14px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="color: #64748B; font-weight: 500; width: 60px;">계정 제재:</span>
+                            <span style="color: #64748B; font-weight: 500;">없음</span>
+                        </div>
+                        <div>
+                            <span style="color: #64748B; font-weight: 500; width: 60px; display: inline-block;">채팅 제재:</span>
+                            <span style="color: #64748B;">없음</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button style="background: white; border: 1px solid #E2E8F0; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; color: var(--admin-tools-blue); cursor: pointer;" onclick="openModal('forceLogoutModal')">강제 로그아웃</button>
+                        <button style="background-color: #FEE2E2; color: #EF4444; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="openModal('sanctionModal')">제재</button>
+                        <button style="background-color: #FEE2E2; color: #EF4444; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="openModal('deleteModal')">계정 삭제</button>
+                    </div>
+                `;
+            }
+
+            const tbody = document.getElementById('timelineTableBody');
+            if (tbody) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="padding: 16px;"><span style="background-color: #E0F2FE; color: #0284C7; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">계정 해제</span></td>
+                    <td style="padding: 16px; color: #0369A1; font-weight: 600;">계정 제재 해제 완료</td>
+                    <td style="padding: 16px; color: var(--text-dark);">2026. 7. 28. 오후 3:35:00</td>
+                    <td style="padding: 16px; color: var(--text-gray);">이주형</td>
+                `;
+                tbody.insertBefore(tr, tbody.firstChild);
+            }
+        }
+
+        function applySanction() {
+            closeModal('sanctionModal');
+            
+            const statusEl = document.getElementById('accountStatusVal');
+            if (statusEl) {
+                statusEl.style.color = '#EF4444';
+                statusEl.textContent = '정지(SUSPEND)';
+            }
+
+            const sanctionBox = document.getElementById('sanctionInfoBox');
+            if (sanctionBox) {
+                sanctionBox.style.backgroundColor = '#FEF2F2';
+                sanctionBox.style.borderColor = '#FECACA';
+                
+                sanctionBox.innerHTML = `
+                    <div style="font-size: 14px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <span style="color: #991B1B; font-weight: 700; width: 60px;">계정 제재:</span>
+                            <span style="color: #DC2626; font-weight: 700;">제재 중 — test (만료 2026. 7. 11. 오후 3:14:00)</span>
+                            <button style="background: white; border: 1px solid #FECACA; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; color: #991B1B; cursor: pointer;" onclick="openModal('releaseSanctionModal')">계정 해제</button>
+                        </div>
+                        <div>
+                            <span style="color: #991B1B; font-weight: 700; width: 60px; display: inline-block;">채팅 제재:</span>
+                            <span style="color: #991B1B;">없음</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button style="background: white; border: 1px solid #FECACA; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; color: #991B1B; cursor: pointer;" onclick="openModal('forceLogoutModal')">강제 로그아웃</button>
+                        <button style="background-color: #EF4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="openModal('sanctionModal')">제재 연장/변경</button>
+                        <button style="background-color: #991B1B; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="openModal('deleteModal')">계정 삭제</button>
+                    </div>
+                `;
+            }
+
+            const tbody = document.getElementById('timelineTableBody');
+            if (tbody) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="padding: 16px;"><span style="background-color: #FEE2E2; color: #EF4444; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: 600;">계정 제재</span></td>
+                    <td style="padding: 16px; color: #DC2626; font-weight: 600;">제재 중 — test (만료 2026. 7. 11. 오후 3:14:00)</td>
+                    <td style="padding: 16px; color: var(--text-dark);">2026. 7. 10. 오후 3:14:00</td>
+                    <td style="padding: 16px; color: var(--text-gray);">이주형</td>
+                `;
+                tbody.insertBefore(tr, tbody.firstChild);
+            }
         }
         </script>
     </div>
