@@ -733,67 +733,19 @@
                                 <button style="background-color: #818CF8; color: white; border: none; padding: 8px 20px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer;">보정</button>
                             </div>
 
-                            <div id="advanced-correction-toggle" style="font-size: 13px; color: var(--text-gray); text-decoration: underline; cursor: pointer; padding-bottom: 16px;" onclick="toggleAdvancedCorrection()">고급 보정 열기 (진화/포링교체/알잠금/호감도/도감)</div>
+                            <div id="advanced-correction-toggle" style="font-size: 13px; color: var(--text-gray); text-decoration: underline; cursor: pointer; padding-bottom: 16px;" onclick="toggleAdvancedCorrection()">고급 보정 열기 (NPC 호감도)</div>
                             
                             <div id="advanced-correction-area" style="display: none; padding-bottom: 24px;">
-                                <!-- 진화 진행도 보정 -->
+                                <!-- NPC 호감도 보정 -->
                                 <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
-                                    <div style="font-size: 13px; font-weight: 700; margin-bottom: 12px;">진화 진행도 보정</div>
+                                    <div style="font-size: 13px; font-weight: 700; margin-bottom: 12px;">NPC 호감도 보정</div>
                                     <div style="display: flex; gap: 12px; align-items: flex-end;">
                                         <div>
-                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">Slot</div>
+                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">NpcID</div>
                                             <input type="text" style="width: 80px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
                                         </div>
                                         <div>
-                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">조건타입</div>
-                                            <input type="text" style="width: 100px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
-                                        </div>
-                                        <div>
-                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">TID(기본0)</div>
-                                            <input type="text" style="width: 100px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
-                                        </div>
-                                        <div>
-                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">값</div>
-                                            <input type="text" style="width: 100px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
-                                        </div>
-                                        <div style="flex: 1;">
-                                            <div style="font-size: 12px; color: transparent; margin-bottom: 4px;">사유</div>
-                                            <input type="text" placeholder="사유(필수)" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
-                                        </div>
-                                        <button style="background-color: #818CF8; color: white; border: none; padding: 8px 20px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; height: 35px;">보정</button>
-                                    </div>
-                                </div>
-
-                                <!-- 포링 교체 보정 -->
-                                <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
-                                    <div style="font-size: 13px; font-weight: 700; margin-bottom: 12px;">포링 교체 (SlotID 유지, PoringID 만 변경) 보정</div>
-                                    <div style="display: flex; gap: 12px; align-items: flex-end;">
-                                        <div>
-                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">Slot</div>
-                                            <input type="text" style="width: 80px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
-                                        </div>
-                                        <div>
-                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">새 PoringID</div>
-                                            <input type="text" style="width: 120px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
-                                        </div>
-                                        <div style="flex: 1;">
-                                            <div style="font-size: 12px; color: transparent; margin-bottom: 4px;">사유</div>
-                                            <input type="text" placeholder="사유(필수)" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
-                                        </div>
-                                        <button style="background-color: #818CF8; color: white; border: none; padding: 8px 20px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer; height: 35px;">보정</button>
-                                    </div>
-                                </div>
-
-                                <!-- 알 잠금/해제 보정 -->
-                                <div style="background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-bottom: 16px;">
-                                    <div style="font-size: 13px; font-weight: 700; margin-bottom: 12px;">알 잠금/해제 보정</div>
-                                    <div style="display: flex; gap: 12px; align-items: flex-end;">
-                                        <div>
-                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">Slot</div>
-                                            <input type="text" style="width: 80px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
-                                        </div>
-                                        <div>
-                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">잠금(1/0)</div>
+                                            <div style="font-size: 12px; color: var(--text-dark); margin-bottom: 4px;">호감도</div>
                                             <input type="text" style="width: 100px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; font-size: 13px;">
                                         </div>
                                         <div style="flex: 1;">
@@ -872,7 +824,7 @@
             toggleBtn.textContent = '고급 보정 닫기';
         } else {
             area.style.display = 'none';
-            toggleBtn.textContent = '고급 보정 열기 (진화/포링교체/알잠금/호감도/도감)';
+            toggleBtn.textContent = '고급 보정 열기 (NPC 호감도)';
         }
     }
 
